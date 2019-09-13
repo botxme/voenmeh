@@ -1,0 +1,39 @@
+{
+  "name": "vk-apps-voenmeh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env PORT=10888 react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "https://botxme.github.io/vk-apps-voenmeh/",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "gh-pages": "^2.1.1",
+    "react-hot-loader": "^4.7.1",
+    "react-scripts": "^2.1.5"
+  },
+  "dependencies": {
+    "@vkontakte/icons": "^1.8.3",
+    "@vkontakte/vk-connect": "^1.5.6",
+    "@vkontakte/vkui": "^2.30.2",
+    "@vkontakte/vkui-connect": "^1.5.4",
+    "babel-eslint": "^9.0.0",
+    "core-js": "^2.6.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
