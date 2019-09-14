@@ -4,8 +4,9 @@
   "description": "Сервис ВКонтакте",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open --hot",
+    "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "repository": "https://github.com/botxme/voenmex",
@@ -15,6 +16,7 @@
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.6.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "gh-pages": "^2.1.1",
@@ -27,6 +29,7 @@
   "dependencies": {
     "@vkontakte/icons": "^1.8.3",
     "@vkontakte/vk-connect": "^1.5.6",
+    "@vkontakte/vk-connect-promise": "^0.2.0",
     "@vkontakte/vkui": "^2.30.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"

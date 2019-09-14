@@ -1,0 +1,43 @@
+/* VKUI dark theme */
+
+:root {
+  --header_background: #4286f4;
+  --background_page: #212123;
+  --header_alternate_background: #19191a; /* tabbar */
+  --tabbar_active_icon: #4286f4;
+  --tabbar_inactive_icon: #edeef0;
+}
+
+/* App styles */
+
+.lessons {
+  color: #fff;
+}
+
+.lessons .lesson:not(:last-child) {
+  padding-bottom: 10px;
+  border-bottom: .5px solid #fff;
+}
+
+.lesson {
+  padding: 10px 10px 0 10px;
+  display: flex;
+}
+
+.lesson_time {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  justify-content: space-between;
+}
+
+/* background: #4286f4; */
+
+.lesson_content {
+  padding-left: 10px;
+  border-left: 1.5px solid #4286f4;
+}
+
+.lesson_type {
+  color: #4286f4;
+}
