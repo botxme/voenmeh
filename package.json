@@ -4,37 +4,68 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env PORT=10888 react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env PORT=10888 node scripts/start.js",
+    "build": "node scripts/build.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "deploy": "gh-pages -d build"
   },
-  "homepage": "https://botxme.github.io/vk-apps-voenmeh/",
+  "repository": "https://botxme.github.io/vk-apps-voenmeh/",
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.2.0",
     "gh-pages": "^2.1.1",
-    "react-hot-loader": "^4.7.1",
-    "react-scripts": "^2.1.5"
+    "react-hot-loader": "^4.7.1"
   },
   "dependencies": {
+    "@babel/core": "7.2.2",
+    "@svgr/webpack": "4.1.0",
     "@vkontakte/icons": "^1.8.3",
     "@vkontakte/vk-connect": "^1.5.6",
     "@vkontakte/vkui": "^2.30.2",
     "@vkontakte/vkui-connect": "^1.5.4",
-    "babel-eslint": "^9.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "8.0.5",
+    "babel-plugin-named-asset-import": "^0.3.1",
+    "babel-preset-react-app": "^7.0.1",
+    "bfj": "6.1.1",
+    "case-sensitive-paths-webpack-plugin": "2.2.0",
     "core-js": "^2.6.5",
+    "css-loader": "1.0.0",
+    "dotenv": "6.0.0",
+    "dotenv-expand": "4.2.0",
+    "file-loader": "2.0.0",
+    "fs-extra": "7.0.1",
+    "html-webpack-plugin": "4.0.0-alpha.2",
+    "identity-obj-proxy": "3.0.0",
+    "mini-css-extract-plugin": "0.5.0",
+    "optimize-css-assets-webpack-plugin": "5.0.1",
+    "postcss-flexbugs-fixes": "4.1.0",
+    "postcss-loader": "3.0.0",
+    "postcss-preset-env": "6.5.0",
+    "postcss-safe-parser": "4.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-app-polyfill": "^0.2.1",
+    "react-dev-utils": "^7.0.3",
+    "react-dom": "^16.8.3",
+    "resolve": "1.10.0",
+    "style-loader": "0.23.1",
+    "terser-webpack-plugin": "1.2.2",
+    "url-loader": "1.1.2",
+    "webpack": "4.28.3",
+    "webpack-dev-server": "3.1.14"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  }
 }
