@@ -38,7 +38,7 @@ class Schedule extends Component {
           <div className="lesson_type">{type.toUpperCase()}</div>
           <div className="lesson_name">{name}</div>
           <div className="lesson_room">Аудитория: {room}</div>
-          <div className="lesson_teacher">Препод: {teacher}</div>
+          <div className="lesson_teacher">Преподаватель: {teacher}</div>
         </div>
       </div>
     ));
@@ -46,6 +46,9 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
+        <div className="s_wday">
+         Вторник, 17 сентября
+        </div>
         <div className="lessons">
           {lessons}
         </div>

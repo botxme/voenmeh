@@ -11,9 +11,9 @@
 /* App styles */
 
 @font-face {
-  font-family: 'TT Norms Medium';
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'TT Norms';
+  font-style: medium;
+  font-weight: 500;
   src: url('../components/fonts/TTNorms-Medium.eot'); /* IE9 Compat Modes */
   src: local('TT Norms'), local('TTNorms'),
        url('../components/fonts/TTNorms-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-  font-family: 'TT Norms Regular';
+  font-family: 'TT Norms';
   font-style: normal;
   font-weight: 400;
   src: url('../components/fonts/TTNorms-Regular.eot'); /* IE9 Compat Modes */
@@ -35,20 +35,21 @@
 }
 
 body, #schedule {
-  font-family: 'TT Norms Regular';
+  font-family: 'TT Norms';
+  font-weight: 400;
 }
 
 .lessons {
   color: #fff;
+  margin: 0px 10px;
 }
 
-.lessons .lesson:not(:last-child) {
-  padding-bottom: 10px;
-  border-bottom: .5px solid #fff;
+.lesson:not(:last-child) {
+  border-bottom: .5px solid #edeef0;
 }
 
 .lesson {
-  padding: 10px 10px 0 10px;
+  padding: 15px 0px 15px 5px;
   display: flex;
 }
 
@@ -56,6 +57,7 @@ body, #schedule {
   display: flex;
   flex-direction: column;
   margin-right: 10px;
+  text-align: right;
   justify-content: space-between;
 }
 
@@ -66,6 +68,17 @@ body, #schedule {
   border-left: 1.5px solid #4286f4;
 }
 
+.lesson_content>div {
+  padding: 5px 0px;
+}
+
 .lesson_type {
   color: #4286f4;
+}
+
+.s_wday {
+  font-family: 'TT Norms';
+  font-weight: 500;
+  color: #fff;
+  padding: 30px 20px;
 }
