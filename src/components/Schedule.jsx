@@ -35,7 +35,7 @@ class Schedule extends Component {
         </div>
         <div className="lesson_border"></div>
         <div className="lesson_content">
-          <div className="lesson_type">{type}</div>
+          <div className="lesson_type">{type.toUpperCase()}</div>
           <div className="lesson_name">{name}</div>
           <div className="lesson_room">Аудитория: {room}</div>
           <div className="lesson_teacher">Препод: {teacher}</div>
