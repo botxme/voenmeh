@@ -4,6 +4,17 @@
   --header_alternate_background: #19191a;
   --tabbar_active_icon: #4286f4;
   --tabbar_inactive_icon: #edeef0;
+  --content_placeholder_icon: #aaaeb3;
+  --content_placeholder_text: #aaaeb3;
+  --content_tint_background: #232324;
+  --background_content: #19191a;
+  --background_highlighted: rgba(255, 255, 255, 0.12);
+  --background_keyboard: #2c2d2e;
+  --background_light: #232324;
+  --background_suggestions: #2c2d2e;
+  --content_tint_foreground: #909499;
+  --field_background: #232324;
+  --field_border: rgba(255, 255, 255, 0.12);
 }
 
 @font-face {
@@ -12,8 +23,8 @@
   font-weight: 400;
   src: url('../fonts/TTNorms-Regular.eot');
   src: local('TT Norms'), local('TTNorms'),
-       url('../fonts/TTNorms-Regular.woff') format('woff'),
-       url('../fonts/TTNorms-Regular.ttf') format('truetype');
+    url('../fonts/TTNorms-Regular.woff') format('woff'),
+    url('../fonts/TTNorms-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -22,11 +33,13 @@
   font-weight: 500;
   src: url('../fonts/TTNorms-Medium.eot');
   src: local('TT Norms'), local('TTNorms'),
-       url('../fonts/TTNorms-Medium.woff') format('woff'),
-       url('../fonts/TTNorms-Medium.ttf') format('truetype');
+    url('../fonts/TTNorms-Medium.woff') format('woff'),
+    url('../fonts/TTNorms-Medium.ttf') format('truetype');
 }
 
-.Panel#schedule, .Panel#settings, .Panel#info {
+.Panel#schedule,
+.Panel#settings,
+.Panel#info {
   font-family: 'TT Norms';
 }
 
