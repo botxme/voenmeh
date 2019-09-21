@@ -1,9 +1,10 @@
 /* VKUI dark theme */
 
 :root {
-  --header_background: #4286f4;
+  --header_background: #4680C2;
   --background_page: #212123;
-  --header_alternate_background: #19191a; /* tabbar */
+  --header_alternate_background: #19191a;
+  /* tabbar */
   --tabbar_active_icon: #4286f4;
   --tabbar_inactive_icon: #edeef0;
 }
@@ -14,27 +15,38 @@
   font-family: 'TT Norms';
   font-style: medium;
   font-weight: 500;
-  src: url('../components/fonts/TTNorms-Medium.eot'); /* IE9 Compat Modes */
+  src: url('../components/fonts/TTNorms-Medium.eot');
+  /* IE9 Compat Modes */
   src: local('TT Norms'), local('TTNorms'),
-       url('../components/fonts/TTNorms-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../components/fonts/TTNorms-Medium.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../components/fonts/TTNorms-Medium.woff') format('woff'), /* Modern Browsers */
-       url('../components/fonts/TTNorms-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('../components/fonts/TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../components/fonts/TTNorms-Medium.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../components/fonts/TTNorms-Medium.woff') format('woff'),
+    /* Modern Browsers */
+    url('../components/fonts/TTNorms-Medium.ttf') format('truetype');
+  /* Safari, Android, iOS */
 }
 
 @font-face {
   font-family: 'TT Norms';
   font-style: normal;
   font-weight: 400;
-  src: url('../components/fonts/TTNorms-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../components/fonts/TTNorms-Regular.eot');
+  /* IE9 Compat Modes */
   src: local('TT Norms'), local('TTNorms'),
-       url('../components/fonts/TTNorms-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../components/fonts/TTNorms-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../components/fonts/TTNorms-Regular.woff') format('woff'), /* Modern Browsers */
-       url('../components/fonts/TTNorms-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('../components/fonts/TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../components/fonts/TTNorms-Regular.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../components/fonts/TTNorms-Regular.woff') format('woff'),
+    /* Modern Browsers */
+    url('../components/fonts/TTNorms-Regular.ttf') format('truetype');
+  /* Safari, Android, iOS */
 }
 
-body, #schedule {
+body,
+#schedule {
   font-family: 'TT Norms';
   font-weight: 400;
 }

@@ -3,13 +3,16 @@ import connect from '@vkontakte/vk-connect-promise';
 import '@vkontakte/vkui/dist/vkui.css';
 import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader } from '@vkontakte/vkui';
 
-import Icon28RecentOutline from '@vkontakte/icons/dist/28/recent_outline';
 import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
+import Icon16Fire from '@vkontakte/icons/dist/16/fire';
 import Icon20CalendarOutline from '@vkontakte/icons/dist/20/calendar_outline';
-import Icon28InfoOutline from '@vkontakte/icons/dist/28/info_outline';
+import Icon24Favorite from '@vkontakte/icons/dist/24/favorite';
+import Icon16Lock from '@vkontakte/icons/dist/16/lock';
 import Icon28SettingsOutline from '@vkontakte/icons/dist/28/settings_outline';
 
 import Schedule from './Schedule.jsx';
+import Info from './Info.jsx';
+import Settings from './Settings.jsx';
 
 connect.send('VKWebAppInit', {});
 
@@ -37,7 +40,7 @@ class App extends Component {
         <TabbarItem
           onClick={() => this.changePage('time')}
           selected={this.state.activePage == 'time'}
-        ><Icon28RecentOutline /></TabbarItem>
+        ><Icon16Fire width={24} height={24} /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('schedule')}
@@ -47,7 +50,7 @@ class App extends Component {
         <TabbarItem
           onClick={() => this.changePage('info')}
           selected={this.state.activePage == 'info'}
-        ><Icon28InfoOutline /></TabbarItem>
+        ><Icon16Lock width={24} height={24} /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('settings')}
@@ -71,19 +74,15 @@ class App extends Component {
         </View>
 
         <View id="schedule" activePanel="schedule">
-          <Schedule id="schedule"/>
+          <Schedule id="schedule" />
         </View>
 
         <View id="info" activePanel="info">
-          <Panel id="info">
-            <PanelHeader>FAQ</PanelHeader>
-          </Panel>
+          <Info id="info" />
         </View>
 
         <View id="settings" activePanel="settings">
-          <Panel id="settings">
-            <PanelHeader>Настройки</PanelHeader>
-          </Panel>
+          <Settings id="settings" />
         </View>
       </Epic>
     );
