@@ -46,7 +46,7 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
-        <div className="s_wday">
+        <div className="lessons_date">
          Вторник, 17 сентября
         </div>
         <div className="lessons">

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import connect from '@vkontakte/vk-connect-promise';
-import '@vkontakte/vkui/dist/vkui.css';
 import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader } from '@vkontakte/vkui';
+
+import '@vkontakte/vkui/dist/vkui.css';
+import '../css/main.css';
 
 import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
 import Icon16Fire from '@vkontakte/icons/dist/16/fire';

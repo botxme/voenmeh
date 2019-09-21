@@ -1,0 +1,41 @@
+:root {
+  --header_background: #4680C2;
+  --background_page: #212123;
+  --header_alternate_background: #19191a;
+  --tabbar_active_icon: #4286f4;
+  --tabbar_inactive_icon: #edeef0;
+}
+
+@font-face {
+  font-family: 'TT Norms';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/TTNorms-Regular.eot');
+  src: local('TT Norms'), local('TTNorms'),
+       url('../fonts/TTNorms-Regular.woff') format('woff'),
+       url('../fonts/TTNorms-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TT Norms';
+  font-style: medium;
+  font-weight: 500;
+  src: url('../fonts/TTNorms-Medium.eot');
+  src: local('TT Norms'), local('TTNorms'),
+       url('../fonts/TTNorms-Medium.woff') format('woff'),
+       url('../fonts/TTNorms-Medium.ttf') format('truetype');
+}
+
+.Panel#schedule, .Panel#settings, .Panel#info {
+  font-family: 'TT Norms';
+}
+
+.center-text {
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: xx-large;
+  color: #fff;
+}

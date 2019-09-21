@@ -11,7 +11,7 @@ class Settings extends Component {
     return (
       <Panel id="settings">
         <PanelHeader>Настройки</PanelHeader>
-        <div className="text">
+        <div className="center-text">
           А тут пусто!
         </div>
       </Panel>

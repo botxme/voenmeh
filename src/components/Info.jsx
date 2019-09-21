@@ -11,7 +11,7 @@ class Info extends Component {
     return (
       <Panel id="info">
         <PanelHeader>What the fuck</PanelHeader>
-        <div className="text">
+        <div className="center-text">
           Этот раздел <br /> временно недоступен
         </div>
       </Panel>
