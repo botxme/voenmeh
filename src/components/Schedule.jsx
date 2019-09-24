@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Panel, PanelHeader } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, FormLayout } from '@vkontakte/vkui';
 import '../css/schedule.css';
 
 class Schedule extends Component {
@@ -28,7 +28,7 @@ class Schedule extends Component {
 
   render() {
     const lessons = this.state.lessons.map(({ time, type, name, room, teacher }) => (
-      <div className="lesson">
+      <div className="lesson" key={time + name + room}>
         <div className="lesson_time">
           <div>{time[0]}</div>
           <div>{time[1]}</div>
@@ -46,12 +46,14 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
-        <div className="lessons_date">
-         Вторник, 17 сентября
-        </div>
-        <div className="lessons">
-          {lessons}
-        </div>
+        <FormLayout>
+          <div className="lessons_date">
+            Вторник, 17 сентября
+          </div>
+          <div className="lessons">
+            {lessons}
+          </div>
+        </FormLayout>
       </Panel>
     );
   }

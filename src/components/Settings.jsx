@@ -13,7 +13,7 @@ class Settings extends Component {
 
   render() {
     const groups = this.state.groups.map((group) => (
-      <option value={group}>{group}</option>
+      <option value={group} key={group.toString()}>{group}</option>
     ));
 
     return (
