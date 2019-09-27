@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import connect from '@vkontakte/vk-connect-promise';
-import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader } from '@vkontakte/vkui';
+import connect from '@vkontakte/vk-connect';
+import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader, FormLayout, FormLayoutGroup, Avatar, Select, Div, Button } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import '../css/main.css';
+import '../css/first.css';
 
 import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
 import Icon16Fire from '@vkontakte/icons/dist/16/fire';
@@ -15,15 +16,17 @@ import Icon28SettingsOutline from '@vkontakte/icons/dist/28/settings_outline';
 import Schedule from './Schedule.jsx';
 import Info from './Info.jsx';
 import Settings from './Settings.jsx';
+import FirstScr from './FirstScr.jsx';
 
-connect.send('VKWebAppInit', {});
+// Sends event to client
+connect.send('VKWebAppInit');
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activePage: 'schedule'
+      activePage: localStorage.group != undefined ? 'schedule' : 'first',
     };
   }
 
@@ -62,7 +65,7 @@ class App extends Component {
     );
 
     return (
-      <Epic activeStory={this.state.activePage} tabbar={tabbar}>
+      <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage != "first") ? tabbar : false}>
         <View id="feed" activePanel="feed">
           <Panel id="feed">
             <PanelHeader>Новости</PanelHeader>
@@ -86,7 +89,11 @@ class App extends Component {
         <View id="settings" activePanel="settings">
           <Settings id="settings" />
         </View>
-      </Epic>
+
+        <View id="first" activePanel="first">
+          <FirstScr id="first" variable={this}/>
+        </View>
+      </Epic >
     );
   }
 }
