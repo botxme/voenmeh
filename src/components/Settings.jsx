@@ -19,7 +19,6 @@ class Settings extends Component {
       <Panel id="settings">
         <PanelHeader>Настройки</PanelHeader>
         <FormLayout>
-          <Div>Твоя группа сейчас: {Group.name}</Div>
           <Select top="Группа" placeholder="Выберите группу" value={JSON.stringify(Group)}>
             {groups}
           </Select>

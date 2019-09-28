@@ -1,10 +1,17 @@
 :root {
   --text_primary: #e1e3e6;
-  --header_background: #4680C2;
   --background_page: #212123;
   --header_alternate_background: #19191a;
-  --tabbar_active_icon: #4286f4;
-  --tabbar_inactive_icon: #edeef0;
+  --tabbar_active_icon: #ffffff;
+  --tabbar_background: #2c2d2e;
+  --tabbar_inactive_icon: #76787a;
+  --tabbar_tablet_active_icon: #71aaeb;
+  --tabbar_tablet_background: #232324;
+  --tabbar_tablet_inactive_icon: #76787a;
+  --tabbar_tablet_text_primary: #e1e3e6;
+  --tabbar_tablet_text_secondary: #76787a;
+  --toolbar_attach_background_from: #76787a;
+  --toolbar_attach_background_to: #5d5f61;
   --content_placeholder_icon: #aaaeb3;
   --content_placeholder_text: #aaaeb3;
   --content_tint_background: #232324;
@@ -16,6 +23,14 @@
   --content_tint_foreground: #909499;
   --field_background: #232324;
   --field_border: rgba(255, 255, 255, 0.12);
+  --modal_card_background: #2c2d2e;
+  --modal_card_border: rgba(255, 255, 255, 0.12);
+  --modal_card_header_close: #ffffff;
+  --header_background: #2c2d2e;
+  --header_background_before_blur: #141414;
+  --header_background_before_blur_alternate: #141414;
+  --header_search_field_background: #454647;
+  --header_search_field_tint: #aaaeb3;
 }
 
 @font-face {
@@ -40,7 +55,8 @@
 
 .Panel#schedule,
 .Panel#settings,
-.Panel#info {
+.Panel#info,
+.Panel#feed {
   font-family: 'TT Norms';
 }
 

@@ -10,13 +10,15 @@ import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
 import Icon16Fire from '@vkontakte/icons/dist/16/fire';
 import Icon20CalendarOutline from '@vkontakte/icons/dist/20/calendar_outline';
 import Icon24Favorite from '@vkontakte/icons/dist/24/favorite';
-import Icon16Lock from '@vkontakte/icons/dist/16/lock';
+import Icon28Delete from '@vkontakte/icons/dist/28/delete';
 import Icon28SettingsOutline from '@vkontakte/icons/dist/28/settings_outline';
 
+
 import Schedule from './Schedule.jsx';
-import Info from './Info.jsx';
+import Archive from './Archive.jsx';
 import Settings from './Settings.jsx';
 import FirstScr from './FirstScr.jsx';
+import NewsFeed from './NewsFeed.jsx';
 
 // Sends event to client
 connect.send('VKWebAppInit');
@@ -53,9 +55,9 @@ class App extends Component {
         ><Icon20CalendarOutline width={28} height={28} /></TabbarItem>
 
         <TabbarItem
-          onClick={() => this.changePage('info')}
-          selected={this.state.activePage == 'info'}
-        ><Icon16Lock width={24} height={24} /></TabbarItem>
+          onClick={() => this.changePage('archive')}
+          selected={this.state.activePage == 'archive'}
+        ><Icon28Delete /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('settings')}
@@ -67,9 +69,7 @@ class App extends Component {
     return (
       <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage != "first") ? tabbar : false}>
         <View id="feed" activePanel="feed">
-          <Panel id="feed">
-            <PanelHeader>Новости</PanelHeader>
-          </Panel>
+          <NewsFeed id="feed" />
         </View>
 
         <View id="time" activePanel="time">
@@ -82,8 +82,8 @@ class App extends Component {
           <Schedule id="schedule" />
         </View>
 
-        <View id="info" activePanel="info">
-          <Info id="info" />
+        <View id="archive" activePanel="archive">
+          <Archive id="archive" />
         </View>
 
         <View id="settings" activePanel="settings">
