@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Panel, PanelHeader, Select, FormLayout } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Select, FormLayout, Div } from '@vkontakte/vkui';
 import '../css/settings.css';
 import Groups from './groups.js';
 
@@ -10,14 +10,17 @@ class Settings extends Component {
 
   render() {
     const groups = Groups.map((group) => (
-      <option value={group} key={group.toString()}>{group}</option>
+      <option value={JSON.stringify(group)} key={group.id}>{group.name}</option>
     ));
+
+    const Group = JSON.parse(localStorage.getItem('group'));
 
     return (
       <Panel id="settings">
         <PanelHeader>Настройки</PanelHeader>
         <FormLayout>
-          <Select top="Группа" placeholder="Выберите группу" value={localStorage.group}>
+          <Div>Твоя группа сейчас: {Group.name}</Div>
+          <Select top="Группа" placeholder="Выберите группу" value={JSON.stringify(Group)}>
             {groups}
           </Select>
         </FormLayout>

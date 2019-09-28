@@ -7,18 +7,19 @@ class FirstScr extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { group: "" }
+    this.state = { group: {}, disabled: true }
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(e) {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
+    this.setState({ disabled: false });
   }
 
   render() {
     const groups = Groups.map((group) => (
-      <option value={group} key={group.toString()}>{group}</option>
+      <option value={JSON.stringify(group)} key={group.id}>{group.name}</option>
     ));
 
     return (
@@ -35,10 +36,9 @@ class FirstScr extends Component {
 
           <Div className="button_FirstPage">
             <Button onClick={() => {
-              console.log(this.state.group);
-              localStorage.group = this.state.group;
+              localStorage.setItem('group', this.state.group);
               this.props.variable.changePage('schedule');
-            }} size="l" stretched style={{ margin: 0 }}>Продолжить</Button>
+            }} size="l" stretched style={{ margin: 0 }} disabled={this.state.disabled}>Продолжить</Button>
           </Div>
         </FormLayout>
       </Panel>
