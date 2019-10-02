@@ -1,41 +1,43 @@
 import React, { Component } from 'react';
-import { Panel, PanelHeader, FormLayout, Search, Alert, View, List, Cell } from '@vkontakte/vkui';
+import { Root, Panel, PanelHeader, FormLayout, Search, Alert, View, List, Cell, HeaderButton, platform, IOS, Button } from '@vkontakte/vkui';
 import '../css/newsfeed.css';
 import Groups from './groups.js';
+import Page from './Page.jsx';
+
+import Icon24Back from '@vkontakte/icons/dist/24/back';
+import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
+
+const osname = platform();
 
 const News = [
   {
-    id: 1,
-    title: 'В стенах ВУЗа прошел трёхчасовой квест для первокурсников',
-    link: '/',
-    date: '13.10.2019',
-    time: '21:00',
-    tags: ['общее', 'квест', 'тег']
-  },
-  {
-    id: 2,
-    title: 'Что сказать? Кретов -- лучший!',
-    link: '/',
-    date: '11.10.2019',
-    time: '05:00',
-    tags: ['факультетИ', 'кафедраИ5']
-  },
-  {
     id: 3,
-    title: 'Долгожданный запуск сервиса для всех студентов ВОЕНМЕХа',
-    link: '/',
-    date: '20.10.2019',
-    time: '23:50',
-    tags: ['общее', 'сервисВК']
+    title: 'Тестовый запуск сервиса на кафедре И5',
+    link: 'тест',
+    date: '11.11.2019',
+    time: '11:11',
+    tags: ['общее', 'кафедраИ5']
   },
   {
     id: 4,
-    title: 'Всё класс, едем дальше!',
-    link: '/',
-    date: '11.10.2019',
-    time: '05:00',
-    tags: ['хеш', 'аываываы']
-  }
+    title: 'Как это было — #студлидер2019',
+    link: `Учеба уже успела потрепать нервы новоиспеченным студентам, так что 25 и 26 сентября ребята направляли свои силы в другое русло. 
+И действительно, эти дни прошли насыщенно: буквально через час после заселения студенты проходили испытания на выявления лидерских качеств. 
+После погружения в стрессовые ситуации обстановку разрядил песенный вечер у костра. Тематикой песен была выбрана «любовь и барды». Многие услышали знакомые песни и с радостью подпевали выступавшим. 
+На следующий день команды уже представляли свои проекты, которые комментировались и корректировались организаторами мероприятия. 
+До встречи на следующих этапах!`,
+    date: '27.09.2019',
+    time: '15:56',
+    tags: ['общее', 'мероприятие']
+  },
+  {
+    id: 1,
+    title: 'В стенах ВУЗа прошёл трёхчасовой квест для первокурсников',
+    link: 'тест',
+    date: '14.09.2019',
+    time: '23:50',
+    tags: ['общее', 'мероприятие']
+  },
 ];
 
 class NewsFeed extends Component {
@@ -44,9 +46,12 @@ class NewsFeed extends Component {
 
     this.state = {
       popout: null,
-      search: ''
+      search: '',
+      activeView: 'feed',
+      activePanel: 'feed'
     };
 
+    this.changePage = this.changePage.bind(this);
     this.onChange = this.onChange.bind(this);
     this.openDefault = this.openDefault.bind(this);
     this.closePopout = this.closePopout.bind(this);
@@ -69,19 +74,23 @@ class NewsFeed extends Component {
     this.setState({ popout: null });
   }
 
-  openDefault() {
+  openDefault(text) {
     this.setState({
       popout:
         <Alert actions={[{
-          title: 'Отмена',
+          title: 'Закрыть',
           autoclose: true,
           style: 'cancel'
         }]}
           onClose={this.closePopout}
         >
-          <p>Блять, все Влады просто пиздатые ❤❤</p>
+          <p>{text}</p>
         </Alert>
     });
+  }
+
+  changePage(name) {
+    this.setState({ activeView: name });
   }
 
   render() {
@@ -98,19 +107,32 @@ class NewsFeed extends Component {
               {date + ' ' + time}
             </div>
           </div>
-          <div className="post_title" onClick={this.openDefault}>{title}</div>
+          <div className="post_title" onClick={() => this.openDefault(link)}>{title}</div>
         </div>
       ));
 
     return (
-      <View popout={this.state.popout} activePanel="feed">
-        <Panel id="feed" >
-          <PanelHeader>Новости</PanelHeader>
-          <Search value={this.state.search} onChange={this.onChange} />
-          <div className="img-banner" style={{ backgroundImage: `url(${require('../images/banner.png')})` }} />
-          <div className="posts">{posts}</div>
-        </Panel>
-      </View>
+      <Root activeView={this.state.activeView}>
+        <View id="feed" popout={this.state.popout} activePanel={this.state.activePanel}>
+          <Panel id="feed" >
+            <PanelHeader>Новости</PanelHeader>
+            <Search value={this.state.search} onChange={this.onChange} />
+            <div className="img-banner" style={{ backgroundImage: `url(${require('../images/banner.png')})` }} />
+            <div className="posts">{posts}</div>
+          </Panel>
+
+          <Panel id="page">
+            <PanelHeader
+              left={<HeaderButton onClick={() => alert(1)}>{osname === IOS ? <Icon28ChevronBack /> : <Icon24Back />}</HeaderButton>}
+              addon={<HeaderButton onClick={() => alert(1)}>Назад</HeaderButton>}
+            >Новости</PanelHeader>
+
+
+            <Button onClick={() => this.setState({ activePanel: 'feed' })} >Чек</Button>
+            <div className="posts">{123}</div>
+          </Panel>
+        </View>
+      </Root>
     );
   }
 }
