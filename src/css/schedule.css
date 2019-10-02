@@ -13,6 +13,7 @@
 }
 
 .lesson_time {
+  min-width: 41px;
   display: flex;
   flex-direction: column;
   margin-right: 10px;

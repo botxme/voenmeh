@@ -18,7 +18,7 @@ class Schedule extends Component {
         {
           time: ['10:50', '12:25'],
           type: 'Пара отсутствует',
-          name: 'Кажется можно передохнуть!',
+          name: 'Наконец можно отдохнуть!',
           room: '',
           teacher: ''
         },
