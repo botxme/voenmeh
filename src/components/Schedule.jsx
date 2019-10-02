@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Panel, PanelHeader, FormLayout } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Div } from '@vkontakte/vkui';
 import '../css/schedule.css';
 
 class Schedule extends Component {
@@ -9,18 +9,32 @@ class Schedule extends Component {
     this.state = {
       lessons: [
         {
-          time: ['9:00', '10:30'],
+          time: ['9:00', '10:35'],
           type: 'Практика',
-          name: 'Культурология',
-          room: '422* (новый корпус)',
-          teacher: 'Клюев Александр Александрович'
+          name: 'Математика-1',
+          room: '214* (новый корпус)',
+          teacher: 'Брацлавский Аркадий Александрович'
         },
         {
           time: ['10:50', '12:25'],
+          type: 'Пара отсутствует',
+          name: 'Кажется можно передохнуть!',
+          room: '',
+          teacher: ''
+        },
+        {
+          time: ['12:40', '14:15'],
           type: 'Практика',
-          name: 'Информатика: основы программирования',
-          room: '218*/216* (новый корпус)',
-          teacher: 'Гаврютина А. А. и Лазарева Т. И.'
+          name: 'Ин. язык - английский',
+          room: '526а* (новый корпус)',
+          teacher: 'Лаптева Александра Вадимовна'
+        },
+        {
+          time: ['14:55', '16:30'],
+          type: 'Лекция',
+          name: 'Введение в специальность',
+          room: '314 (главный корпус)',
+          teacher: 'Бондарев Евгений Сергеевич'
         }
       ]
     };
@@ -37,8 +51,8 @@ class Schedule extends Component {
         <div className="lesson_content">
           <div className="lesson_type">{type.toUpperCase()}</div>
           <div className="lesson_name">{name}</div>
-          <div className="lesson_room">Аудитория: {room}</div>
-          <div className="lesson_teacher">Преподаватель: {teacher}</div>
+          {room?<div className="lesson_room">Аудитория: {room}</div>:false}
+          {teacher?<div className="lesson_teacher">Преподаватель: {teacher}</div>:false}
         </div>
       </div>
     ));
@@ -46,14 +60,14 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
-        <FormLayout>
+        <Div>
           <div className="lessons_date">
-            Вторник, 17 сентября
+            Среда, 2 октября
           </div>
           <div className="lessons">
             {lessons}
           </div>
-        </FormLayout>
+        </Div>
       </Panel>
     );
   }

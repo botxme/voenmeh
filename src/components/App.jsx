@@ -8,10 +8,9 @@ import '../css/first.css';
 
 import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
 import Icon16Fire from '@vkontakte/icons/dist/16/fire';
-import Icon20CalendarOutline from '@vkontakte/icons/dist/20/calendar_outline';
-import Icon24Favorite from '@vkontakte/icons/dist/24/favorite';
-import Icon28Delete from '@vkontakte/icons/dist/28/delete';
-import Icon28SettingsOutline from '@vkontakte/icons/dist/28/settings_outline';
+import Icon56EventOutline from '@vkontakte/icons/dist/56/event_outline';
+import Icon28RecentOutline from '@vkontakte/icons/dist/28/recent_outline';
+import Icon28Settings from '@vkontakte/icons/dist/28/settings';
 
 
 import Schedule from './Schedule.jsx';
@@ -19,6 +18,7 @@ import Archive from './Archive.jsx';
 import Settings from './Settings.jsx';
 import FirstScr from './FirstScr.jsx';
 import NewsFeed from './NewsFeed.jsx';
+import Deadlines from './Deadlines.jsx';
 
 // Sends event to client
 connect.send('VKWebAppInit');
@@ -38,7 +38,7 @@ class App extends Component {
 
   render() {
     const tabbar = (
-      <Tabbar>
+      <Tabbar style={{ position: "sticky" }}>
         <TabbarItem
           onClick={() => this.changePage('feed')}
           selected={this.state.activePage == 'feed'}
@@ -52,17 +52,17 @@ class App extends Component {
         <TabbarItem
           onClick={() => this.changePage('schedule')}
           selected={this.state.activePage == 'schedule'}
-        ><Icon20CalendarOutline width={28} height={28} /></TabbarItem>
+        ><Icon56EventOutline width={28} height={28} /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('archive')}
           selected={this.state.activePage == 'archive'}
-        ><Icon28Delete /></TabbarItem>
+        ><Icon28RecentOutline /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('settings')}
           selected={this.state.activePage == 'settings'}
-        ><Icon28SettingsOutline /></TabbarItem>
+        ><Icon28Settings /></TabbarItem>
       </Tabbar>
     );
 
@@ -73,9 +73,7 @@ class App extends Component {
         </View>
 
         <View id="time" activePanel="time">
-          <Panel id="time">
-            <PanelHeader>Дедлайны</PanelHeader>
-          </Panel>
+          <Deadlines id="time" />
         </View>
 
         <View id="schedule" activePanel="schedule">
@@ -91,7 +89,7 @@ class App extends Component {
         </View>
 
         <View id="first" activePanel="first">
-          <FirstScr id="first" variable={this}/>
+          <FirstScr id="first" variable={this} />
         </View>
       </Epic >
     );

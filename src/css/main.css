@@ -31,6 +31,10 @@
   --header_background_before_blur_alternate: #141414;
   --header_search_field_background: #454647;
   --header_search_field_tint: #aaaeb3;
+  --search_bar_background: #2c2d2e;
+  --search_bar_field_background: #454647;
+  --search_bar_field_tint: #aaaeb3;
+  --search_bar_segmented_control_tint: #909499;
 }
 
 @font-face {
@@ -56,7 +60,8 @@
 .Panel#schedule,
 .Panel#settings,
 .Panel#info,
-.Panel#feed {
+.Panel#feed,
+.Panel#time {
   font-family: 'TT Norms';
 }
 
