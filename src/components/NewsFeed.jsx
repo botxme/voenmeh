@@ -47,7 +47,9 @@ class NewsFeed extends Component {
   }
 
   /* поиск */
-  onChange(search) { this.setState({ search }); }
+  onChange(search) {
+    this.setState({ search: search.replace(/\s+/g, ' ') });
+  }
 
   get sposts() {
     const search = this.state.search.toLowerCase();

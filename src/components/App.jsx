@@ -47,6 +47,26 @@ class App extends Component {
     this.setState({ data: value });
   };
 
+  componentDidMount() {
+    window.addEventListener('popstate', e => e.preventDefault() & this.menu(e));
+    window.history.pushState({ panel: 'feed' }, `feed`);
+  }
+
+  go(e) {
+    this.setState({ activePanel: e.currentTarget.dataset.to });
+    window.history.pushState({ panel: e.currentTarget.dataset.to }, `${e.currentTarget.dataset.to}`);
+  };
+
+  menu(e) {
+    alert
+    if (e.state) {
+      this.setState({ activePanel: e.state.panel });
+    } else {
+      this.setState({ activePanel: 'feed', search: '' });
+      window.history.pushState({ panel: 'feed' }, `feed`);
+    }
+  }
+
   render() {
     const tabbar = (
       <Tabbar style={{ position: "sticky" }}>
@@ -80,8 +100,8 @@ class App extends Component {
     return (
       <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage != "first") ? tabbar : false}>
         <View id="feed" activePanel={this.state.activePanel}>
-          <NewsFeed id="feed" variable={this} updateData={this}/>
-          <Page id="page" variable={this} data={this.state.data}/>
+          <NewsFeed id="feed" go={this.go} variable={this} updateData={this} />
+          <Page id="page" go={this.go} variable={this} data={this.state.data} />
         </View>
 
         <View id="time" activePanel="time">

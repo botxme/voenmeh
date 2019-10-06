@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ErudaWebpackPlugin = require('eruda-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -36,9 +37,13 @@ module.exports = {
       }
     ]
   },
+  mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new ErudaWebpackPlugin({
+      entry: /index\.js$/
     })
   ],
   devServer: {
