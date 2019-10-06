@@ -39,20 +39,16 @@
 
 @font-face {
   font-family: 'TT Norms';
-  font-style: normal;
   font-weight: 400;
-  src: url('../fonts/TTNorms-Regular.eot');
-  src: local('TT Norms'), local('TTNorms'),
+  src: url('../fonts/TTNorms-Regular.eot?') format("eot"),
     url('../fonts/TTNorms-Regular.woff') format('woff'),
     url('../fonts/TTNorms-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TT Norms';
-  font-style: medium;
   font-weight: 500;
-  src: url('../fonts/TTNorms-Medium.eot');
-  src: local('TT Norms'), local('TTNorms'),
+  src: url('../fonts/TTNorms-Medium.eot?') format("eot"),
     url('../fonts/TTNorms-Medium.woff') format('woff'),
     url('../fonts/TTNorms-Medium.ttf') format('truetype');
 }
@@ -61,8 +57,10 @@
 .Panel#settings,
 .Panel#info,
 .Panel#feed,
-.Panel#time {
+.Panel#time,
+.Panel#page {
   font-family: 'TT Norms';
+  font-weight: 400;
 }
 
 .center-text {

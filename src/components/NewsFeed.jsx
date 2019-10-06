@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import { Root, Panel, PanelHeader, FormLayout, Search, Alert, View, List, Cell, HeaderButton, platform, IOS, Button } from '@vkontakte/vkui';
+import { Panel, PanelHeader, FormLayout, Search, Cell } from '@vkontakte/vkui';
 import '../css/newsfeed.css';
 import Groups from './groups.js';
 import Page from './Page.jsx';
-
-import Icon24Back from '@vkontakte/icons/dist/24/back';
-import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
-
-const osname = platform();
 
 const News = [
   {
     id: 1,
     title: 'Тестовый запуск сервиса на кафедре И5',
-    link: 'тест',
+    content: 'тест',
     date: '01.10.2019',
     time: '10:00',
     tags: ['общее', 'кафедраИ5']
@@ -21,7 +16,7 @@ const News = [
   {
     id: 2,
     title: 'Как это было — #студлидер2019',
-    link: `Учеба уже успела потрепать нервы новоиспеченным студентам, так что 25 и 26 сентября ребята направляли свои силы в другое русло.
+    content: `Учеба уже успела потрепать нервы новоиспеченным студентам, так что 25 и 26 сентября ребята направляли свои силы в другое русло.
           И действительно, эти дни прошли насыщенно: буквально через час после заселения студенты проходили испытания на выявления лидерских качеств.
           После погружения в стрессовые ситуации обстановку разрядил песенный вечер у костра. Тематикой песен была выбрана «любовь и барды». Многие услышали знакомые песни и с радостью подпевали выступавшим.
           На следующий день команды уже представляли свои проекты, которые комментировались и корректировались организаторами мероприятия.
@@ -33,90 +28,10 @@ const News = [
   {
     id: 3,
     title: 'В стенах ВУЗа прошёл трёхчасовой квест для первокурсников',
-    link: 'тест',
+    content: 'тест',
     date: '01.10.2019',
     time: '16:45',
     tags: ['общее', 'мероприятие']
-  },
-  {
-    id: 4,
-    title: 'Тестовый заголовок #1',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '19:30',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 5,
-    title: 'Тестовый заголовок #2',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '19:40',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 6,
-    title: 'Тестовый заголовок #3',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '19:50',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 4,
-    title: 'Тестовый заголовок #4',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '20:00',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 5,
-    title: 'Тестовый заголовок #5',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '20:10',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 6,
-    title: 'Тестовый заголовок #6',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '20:20',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 7,
-    title: 'Тестовый заголовок #7',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '20:30',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 8,
-    title: 'Тестовый заголовок #8',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '20:40',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 9,
-    title: 'Тестовый заголовок #9',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '20:50',
-    tags: ['тест1', 'тест2', 'тест3']
-  },
-  {
-    id: 10,
-    title: 'Тестовый заголовок #10',
-    link: 'тест',
-    date: '01.10.2019',
-    time: '21:00',
-    tags: ['тест1', 'тест2', 'тест3']
   }
 ];
 
@@ -125,16 +40,10 @@ class NewsFeed extends Component {
     super(props);
 
     this.state = {
-      popout: null,
       search: '',
-      activeView: 'feed',
-      activePanel: 'feed'
     };
 
-    this.changePage = this.changePage.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.openDefault = this.openDefault.bind(this);
-    this.closePopout = this.closePopout.bind(this);
   }
 
   /* поиск */
@@ -149,70 +58,39 @@ class NewsFeed extends Component {
     }
   }
 
-  /* попап */
-  closePopout() {
-    this.setState({ popout: null });
-  }
-
-  openDefault(text) {
-    this.setState({
-      popout:
-        <Alert actions={[{
-          title: 'Закрыть',
-          autoclose: true,
-          style: 'cancel'
-        }]}
-          onClose={this.closePopout}
-        >
-          <p>{text}</p>
-        </Alert>
-    });
-  }
-
-  changePage(name) {
-    this.setState({ activeView: name });
-  }
-
   render() {
     const posts = this.sposts.length > 0 &&
-      this.sposts.map(({ id, title, link, date, time, tags }) => (
-        <div className="post" key={id}>
-          <div className="post_td">
-            <div className="post_tags">
-              {tags.map((tag) => (
-                <div className="post_tag" key={tag} onClick={() => this.onChange('#' + tag)}>{'#' + tag}</div>
-              ))}
+      this.sposts.map((post) => (
+        <Cell
+          key={post.id}
+          size='l'
+          onClick={() => {
+            this.props.variable.changePanel('page');
+            this.props.updateData.updateData(post)
+          }}
+          bottomContent={
+            <div className="post_td">
+              <div className="post_tags">
+                {post.tags.map((tag) => (
+                  <div className="post_tag" key={tag} onClick={() => this.onChange('#' + tag)}>{'#' + tag}</div>
+                ))}
+              </div>
+              <div className="post_date">
+                {post.date + ' ' + post.time}
+              </div>
             </div>
-            <div className="post_date">
-              {date + ' ' + time}
-            </div>
-          </div>
-          <div className="post_title" onClick={() => this.openDefault(link)}>{title}</div>
-        </div>
+          }
+        >{post.title}</Cell>
       ));
 
+
     return (
-      <Root activeView={this.state.activeView}>
-        <View id="feed" popout={this.state.popout} activePanel={this.state.activePanel}>
-          <Panel id="feed" >
-            <PanelHeader>Новости</PanelHeader>
-            <Search value={this.state.search} onChange={this.onChange} />
-            <div className="img-banner" style={{ backgroundImage: `url(${require('../images/banner.png')})` }} />
-            <div className="posts">{posts}</div>
-          </Panel>
-
-          <Panel id="page">
-            <PanelHeader
-              left={<HeaderButton onClick={() => alert(1)}>{osname === IOS ? <Icon28ChevronBack /> : <Icon24Back />}</HeaderButton>}
-              addon={<HeaderButton onClick={() => alert(1)}>Назад</HeaderButton>}
-            >Новости</PanelHeader>
-
-
-            <Button onClick={() => this.setState({ activePanel: 'feed' })} >Чек</Button>
-            <div className="posts">{123}</div>
-          </Panel>
-        </View>
-      </Root>
+      <Panel id="feed" >
+        <PanelHeader>Новости</PanelHeader>
+        <Search value={this.state.search} onChange={this.onChange} />
+        <div className="img-banner" style={{ backgroundImage: `url(${require('../images/banner.png')})` }} />
+        <div className="posts">{posts}</div>
+      </Panel>
     );
   }
 }

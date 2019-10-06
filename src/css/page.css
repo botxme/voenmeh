@@ -1,0 +1,14 @@
+.page {
+  margin: 10px 0px;
+}
+
+.page_title {
+  font-weight: 500;
+  font-size: larger;
+  font-style: medium;
+}
+
+.page_content {
+  margin-top: 15px;
+  font-weight: 400;
+}

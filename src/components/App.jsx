@@ -19,6 +19,7 @@ import Settings from './Settings.jsx';
 import FirstScr from './FirstScr.jsx';
 import NewsFeed from './NewsFeed.jsx';
 import Deadlines from './Deadlines.jsx';
+import Page from './Page.jsx';
 
 // Sends event to client
 connect.send('VKWebAppInit');
@@ -29,12 +30,22 @@ class App extends Component {
 
     this.state = {
       activePage: localStorage.group != undefined ? 'schedule' : 'first',
+      activePanel: 'feed',
+      data: ''
     };
   }
 
   changePage(name) {
     this.setState({ activePage: name });
   }
+
+  changePanel(name) {
+    this.setState({ activePanel: name });
+  }
+
+  updateData(value) {
+    this.setState({ data: value });
+  };
 
   render() {
     const tabbar = (
@@ -68,8 +79,9 @@ class App extends Component {
 
     return (
       <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage != "first") ? tabbar : false}>
-        <View id="feed" activePanel="feed">
-          <NewsFeed id="feed" />
+        <View id="feed" activePanel={this.state.activePanel}>
+          <NewsFeed id="feed" variable={this} updateData={this}/>
+          <Page id="page" variable={this} data={this.state.data}/>
         </View>
 
         <View id="time" activePanel="time">
