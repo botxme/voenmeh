@@ -31,6 +31,7 @@ class App extends Component {
     this.state = {
       activePage: localStorage.group != undefined ? 'schedule' : 'first',
       activePanel: 'feed',
+      history: ['feed'],
       data: ''
     };
   }
@@ -48,23 +49,32 @@ class App extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('popstate', e => e.preventDefault() & this.menu(e));
-    window.history.pushState({ panel: 'feed' }, `feed`);
+    window.addEventListener('popstate', (event) => {
+      console.log("назад")
+      const his = [...this.state.history];
+      his.pop();
+      const active = his[his.length - 1];
+      if (active === 'feed') {
+        connect.send('VKWebAppDisableSwipeBack');
+      }
+      this.setState({ history: his, activePanel: active });
+    }, false);
   }
 
-  go(e) {
-    this.setState({ activePanel: e.currentTarget.dataset.to });
-    window.history.pushState({ panel: e.currentTarget.dataset.to }, `${e.currentTarget.dataset.to}`);
-  };
+  goBack() {
+    window.history.back();
+  }
 
-  menu(e) {
-    alert
-    if (e.state) {
-      this.setState({ activePanel: e.state.panel });
-    } else {
-      this.setState({ activePanel: 'feed', search: '' });
-      window.history.pushState({ panel: 'feed' }, `feed`);
+  // метод добавления перехода из истории аппы
+  goForward(activePanel) {
+    const history = [...this.state.history];
+    history.push(activePanel);
+    if (this.state.activePanel === 'feed') {
+      connect.send('VKWebAppEnableSwipeBack');
     }
+    window.history.pushState({}, '', activePanel)
+
+    this.setState({ history, activePanel });
   }
 
   render() {
@@ -99,9 +109,14 @@ class App extends Component {
 
     return (
       <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage != "first") ? tabbar : false}>
-        <View id="feed" activePanel={this.state.activePanel}>
-          <NewsFeed id="feed" go={this.go} variable={this} updateData={this} />
-          <Page id="page" go={this.go} variable={this} data={this.state.data} />
+        <View
+          id="feed"
+          activePanel={this.state.activePanel}
+          history={this.state.history}
+          onSwipeBack={this.goBack} // для свайпа на iOS
+        >
+          <NewsFeed id="feed" variable={this} updateData={this} />
+          <Page id="page" variable={this} data={this.state.data} />
         </View>
 
         <View id="time" activePanel="time">

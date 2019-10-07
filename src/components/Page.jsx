@@ -15,7 +15,7 @@ class Page extends Component {
     const { id, title, content, date, time, tags } = this.props.data;
     return (
       <Panel id='page'>
-        <PanelHeader left={<PanelHeaderBack onClick={() => window.history.back()} />}>Новости</PanelHeader>
+        <PanelHeader left={<PanelHeaderBack onClick={() => this.props.variable.goBack()} />}>Новости</PanelHeader>
         <Div className="page">
           <div className="page_title">{title}</div>
           <div className="page_content">{content}</div>

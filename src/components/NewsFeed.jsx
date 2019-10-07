@@ -67,7 +67,7 @@ class NewsFeed extends Component {
           key={post.id}
           size='l'
           onClick={() => {
-            this.props.variable.changePanel('page');
+            this.props.variable.goForward("page");
             this.props.updateData.updateData(post)
           }}
           bottomContent={
