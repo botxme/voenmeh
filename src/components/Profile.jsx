@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Panel, PanelHeader, Select, FormLayout, Div } from '@vkontakte/vkui';
-import '../css/settings.css';
+import '../css/profile.css';
 import Groups from './groups.js';
 
-class Settings extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
   }
@@ -16,8 +16,8 @@ class Settings extends Component {
     const Group = JSON.parse(localStorage.getItem('group'));
 
     return (
-      <Panel id="settings">
-        <PanelHeader>Настройки</PanelHeader>
+      <Panel id="profile">
+        <PanelHeader>Профиль</PanelHeader>
         <FormLayout>
           <Select top="Группа" placeholder="Выберите группу" value={JSON.stringify(Group)}>
             {groups}
@@ -28,4 +28,4 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+export default Profile;

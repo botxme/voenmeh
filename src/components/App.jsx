@@ -9,13 +9,13 @@ import '../css/first.css';
 import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
 import Icon16Fire from '@vkontakte/icons/dist/16/fire';
 import Icon56EventOutline from '@vkontakte/icons/dist/56/event_outline';
-import Icon28RecentOutline from '@vkontakte/icons/dist/28/recent_outline';
-import Icon28Settings from '@vkontakte/icons/dist/28/settings';
+import Icon28ArchiveOutline from '@vkontakte/icons/dist/28/archive_outline';
+import Icon28Profile from '@vkontakte/icons/dist/28/profile';
 
 
 import Schedule from './Schedule.jsx';
 import Archive from './Archive.jsx';
-import Settings from './Settings.jsx';
+import Profile from './Profile.jsx';
 import FirstScr from './FirstScr.jsx';
 import NewsFeed from './NewsFeed.jsx';
 import Deadlines from './Deadlines.jsx';
@@ -98,12 +98,12 @@ class App extends Component {
         <TabbarItem
           onClick={() => this.changePage('archive')}
           selected={this.state.activePage == 'archive'}
-        ><Icon28RecentOutline /></TabbarItem>
+        ><Icon28ArchiveOutline /></TabbarItem>
 
         <TabbarItem
-          onClick={() => this.changePage('settings')}
-          selected={this.state.activePage == 'settings'}
-        ><Icon28Settings /></TabbarItem>
+          onClick={() => this.changePage('profile')}
+          selected={this.state.activePage == 'profile'}
+        ><Icon28Profile /></TabbarItem>
       </Tabbar>
     );
 
@@ -131,8 +131,8 @@ class App extends Component {
           <Archive id="archive" />
         </View>
 
-        <View id="settings" activePanel="settings">
-          <Settings id="settings" />
+        <View id="profile" activePanel="profile">
+          <Profile id="profile" />
         </View>
 
         <View id="first" activePanel="first">

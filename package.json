@@ -31,7 +31,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
-    "@vkontakte/icons": "^1.8.3",
+    "@vkontakte/icons": "^1.10.2",
     "@vkontakte/vk-connect": "^1.6.5",
     "@vkontakte/vk-connect-promise": "^0.2.0",
     "@vkontakte/vkui": "^2.30.2",

@@ -37,7 +37,6 @@ module.exports = {
       }
     ]
   },
-  mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
