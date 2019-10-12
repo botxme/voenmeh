@@ -53,12 +53,13 @@
     url('../fonts/TTNorms-Medium.ttf') format('truetype');
 }
 
-.Panel#schedule,
-.Panel#settings,
-.Panel#info,
 .Panel#feed,
+.Panel#page,
 .Panel#time,
-.Panel#page {
+.Panel#schedule,
+.Panel#archive,
+.Panel#profile,
+.Panel#first {
   font-family: 'TT Norms';
   font-weight: 400;
 }

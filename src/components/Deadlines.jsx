@@ -50,8 +50,15 @@ class Deadlines extends Component {
     return (
       <Panel id="time">
         <PanelHeader>Дедлайны</PanelHeader>
-        <div className="img_obman_scam" style={{ backgroundImage: `url(${require('../images/scam1.png')})` }} />
-        <Div className="img_obman_scamplus" style={{ backgroundImage: `url(${require('../images/scam2.png')})` }} />
+        <div style={{
+          width: "100%",
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column'
+        }}>
+          <img src={require('../images/deadline.png')} style={{ width: "40%", marginTop: "30%" }} />
+          <span style={{ marginTop: "40px", fontWeight: "550", color: "#7f8285", width: "80%", textAlign: "center" }}>Мы активно работаем над развитием этого раздела<br /><br />Загляните сюда попозже!</span>
+        </div>
         {/*<Div>
           <div className="activetasks">
             <div className="activetasks_title">
