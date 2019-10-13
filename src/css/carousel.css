@@ -1,0 +1,81 @@
+.Carousel {
+  overflow: hidden;
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.Carousel div {
+  outline: none;
+}
+
+.Carousel__image-multiple {
+  margin: 0 4px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Carousel__dot-list {
+  display: none !important;
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.Carousel__dot-list li {
+  display: inline-block;
+  text-align: center;
+}
+
+.Carousel__dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 100%;
+  display: inline-block;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 0 3px 0 3px;
+  background-color: #FFFFFF;
+}
+
+.slick-active .Carousel__dot {
+  opacity: 1;
+}
+
+.Carousel .slick-list {
+  font-size: 20px;
+}
+
+.Carousel .slick-slide {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.Carousel__video {
+  position: relative;
+}
+
+.Carousel__video:hover .Carousel__play {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.Carousel__video:active .Carousel__play {
+  background-position-y: 10px;
+}
+
+.Carousel__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5) no-repeat center center/17px 22px;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 50%;
+  transition: background-color 100ms linear, opacity 60ms ease;
+}

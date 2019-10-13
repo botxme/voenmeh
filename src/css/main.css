@@ -35,7 +35,11 @@
   --search_bar_field_background: #454647;
   --search_bar_field_tint: #aaaeb3;
   --search_bar_segmented_control_tint: #909499;
+  --separator_common: #313233;
 }
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=cyrillic');
 
 @font-face {
   font-family: 'TT Norms';
@@ -53,7 +57,6 @@
     url('../fonts/TTNorms-Medium.ttf') format('truetype');
 }
 
-.Panel#feed,
 .Panel#page,
 .Panel#time,
 .Panel#schedule,
@@ -61,6 +64,11 @@
 .Panel#profile,
 .Panel#first {
   font-family: 'TT Norms';
+  font-weight: 400;
+}
+
+.Panel#feed {
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 

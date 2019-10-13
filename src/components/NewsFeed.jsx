@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Panel, PanelHeader, FormLayout, Search, Cell } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Search, Cell, Separator } from '@vkontakte/vkui';
 import '../css/newsfeed.css';
-import Groups from './groups.js';
-import Page from './Page.jsx';
+import Carousel from './Carousel.jsx'
 
 const News = [
   {
@@ -11,7 +10,8 @@ const News = [
     content: 'тест',
     date: '01.10.2019',
     time: '10:00',
-    tags: ['общее', 'кафедраИ5']
+    author: 'Владислав Кретов',
+    tags: ['факультет И', 'кафедраИ5']
   },
   {
     id: 2,
@@ -23,7 +23,8 @@ const News = [
           До встречи на следующих этапах!`,
     date: '01.10.2019',
     time: '12:30',
-    tags: ['общее', 'мероприятие']
+    author: 'Валерия Латышева',
+    tags: ['общее', 'Мероприятие']
   },
   {
     id: 3,
@@ -31,9 +32,41 @@ const News = [
     content: 'тест',
     date: '01.10.2019',
     time: '16:45',
-    tags: ['общее', 'мероприятие']
-  }
+    author: 'Настя Свет',
+    tags: ['привет Настя', 'общее', 'Мероприятие']
+  },
+  {
+    id: 4,
+    title: 'Interesting headline',
+    content: 'content',
+    date: 'dd.mm.yyyy',
+    time: 'xx:xx',
+    author: '%author_name%',
+    tags: ['general', 'hashtag']
+  },
+  {
+    id: 5,
+    title: 'Interesting headline',
+    content: 'content',
+    date: 'dd.mm.yyyy',
+    time: 'xx:xx',
+    author: '%author_name%',
+    tags: ['general', 'hashtag']
+  },
 ];
+
+let list = [
+  {
+    "id": 1, "url": "https://vk.com/app6969696", "image": {
+      "url": "https://psv4.userapi.com/c856324/u462723039/docs/d1/bf27d3c1a652/banner_epta.png?extra=glQg9H7ASzOuw-VG5rM2777KQqSk7Y88Zenw-p48hahQ4U84uGGq8Qx4106TpSDdIXZWD4lk9iTk3Px1OFgYdPpKaJlkl3bZkTeeyhlsvU5h1LVT82zNICTXY_9KrYeE-SlfUTxyc8RJAhSkbxtmXRxXPVM", "thumb": ""
+    }
+  },
+  {
+    "id": 2, "url": "https://vk.com/app6969696", "image": {
+      "url": "https://psv4.userapi.com/c848124/u462723039/docs/d9/811086f4150c/banner_yopta_2.png?extra=dWjy7N-I5h0EZl-mN5xA34IHHL0NCcHCjDYv3OIjILJO9OBTDDy43Rt8L6iGNFFD_Kd849hGrkJOCMYwXRivmZpS5LViMXJZoLPDSVoecEx_GVEwdQKURxi4whNqPpikNwAIhs6VKxZlNBAXUkGqtdJDhU0", "thumb": ""
+    }
+  },
+]
 
 class NewsFeed extends Component {
   constructor(props) {
@@ -44,11 +77,16 @@ class NewsFeed extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.ucFirst = this.ucFirst.bind(this);
   }
 
   /* поиск */
   onChange(search) {
     this.setState({ search: search.replace(/\s+/g, ' ') });
+  }
+
+  ucFirst(str) {
+    return str[0].toUpperCase() + str.slice(1);
   }
 
   get sposts() {
@@ -62,27 +100,39 @@ class NewsFeed extends Component {
 
   render() {
     const posts = this.sposts.length > 0 &&
-      this.sposts.map((post) => (
-        <Cell
-          key={post.id}
-          size='l'
-          onClick={() => {
-            this.props.variable.goForward("page");
-            this.props.updateData.updateData(post)
-          }}
-          bottomContent={
-            <div className="post_td">
-              <div className="post_tags">
-                {post.tags.map((tag) => (
-                  <div className="post_tag" key={tag} onClick={() => this.onChange('#' + tag)}>{'#' + tag}</div>
-                ))}
+      this.sposts.map((post, id) => (
+        <div key={id}>
+          <Cell
+            key={id}
+            size='l'
+            expandable={true}
+            multiline={true}
+            onClick={() => {
+              this.props.variable.goForward("page");
+              this.props.updateData.updateData(post)
+            }}
+            bottomContent={
+              <div>
+                <div className="post_td">
+                  <div className="post_tags">
+                    {post.tags.map((tag, id) => (
+                      <div className="post_tag" key={id}>{this.ucFirst(tag)}</div>
+                    ))}
+                  </div>
+                </div>
+                <div className="post_bot">
+                  <div className="post_date">
+                    {post.date + ' в ' + post.time}
+                  </div>
+                  <div className="post_author">
+                    {' · ' + post.author}
+                  </div>
+                </div>
               </div>
-              <div className="post_date">
-                {post.date + ' ' + post.time}
-              </div>
-            </div>
-          }
-        >{post.title}</Cell>
+            }
+          ><div className="post_title">{post.title}</div></Cell>
+          <Separator style={{ margin: '12px 0' }} />
+        </div>
       ));
 
 
@@ -90,7 +140,9 @@ class NewsFeed extends Component {
       <Panel id="feed" >
         <PanelHeader>Новости</PanelHeader>
         <Search value={this.state.search} onChange={this.onChange} />
-        <div className="img-banner" style={{ backgroundImage: `url(${require('../images/banner.png')})` }} />
+        <Carousel list={list}
+          autoplay={true}
+          sizePadding={52.63} />
         <div className="posts">{posts}</div>
       </Panel>
     );

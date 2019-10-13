@@ -6,10 +6,10 @@
 }
 
 .post_title {
+  font-family: 'TT Norms Light';
   font-size: 20px;
   color: rgb(255, 255, 255);
-  line-height: 1.3;
-  padding: 12px 10px 12px 0;
+  font-weight: 400;
 }
 
 .post {
@@ -21,13 +21,14 @@
 }
 
 .post_tag {
+  font-family: 'TT Norms Light';
   font-size: 15px;
-  color: rgb(33, 33, 35);
   line-height: 1.2;
   margin-right: 10px;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  padding: 3px 5px;
+  border: 1px solid #444547;
+  background-color: #2c2d2f;
+  padding: 2px 4px;
 }
 
 .post_td {
@@ -39,8 +40,32 @@
 .post_date {
   font-family: 'TT Norms Light';
   font-size: 14px;
-  color: rgb(255, 255, 255);
-  line-height: 1.2;
-  right: 20px;
-  position: absolute;
+}
+
+.post_bot {
+  display: flex;
+  margin-top: 5px;
+  color: #9ca2ad;
+}
+
+.post_author {
+  padding-left: 4px;
+  font-family: "TT Norms Light";
+}
+
+.Panel__title {
+  font-family: TT Commons;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  padding: 4px 16px 10px;
+  color: #222;
+}
+
+.Panel__subheader {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  background-color: #fff;
 }
