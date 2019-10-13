@@ -79,7 +79,7 @@ class App extends Component {
 
   render() {
     const tabbar = (
-      <Tabbar style={{ position: "sticky" }}>
+      <Tabbar>
         <TabbarItem
           onClick={() => this.changePage('feed')}
           selected={this.state.activePage == 'feed'}

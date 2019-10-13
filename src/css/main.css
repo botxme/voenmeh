@@ -39,37 +39,77 @@
 }
 
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=cyrillic');
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=cyrillic');*/
 
 @font-face {
   font-family: 'TT Norms';
-  font-weight: 400;
-  src: url('../fonts/TTNorms-Regular.eot?') format("eot"),
-    url('../fonts/TTNorms-Regular.woff') format('woff'),
-    url('../fonts/TTNorms-Regular.ttf') format('truetype');
+  src: url('../fonts/TTNorms-Bold.eot');
+  src: local('TT Norms Bold'), local('TTNorms-Bold'),
+      url('../fonts/TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/TTNorms-Bold.woff') format('woff'),
+      url('../fonts/TTNorms-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'TT Norms';
+  src: url('../fonts/TTNorms-Thin.eot');
+  src: local('TT Norms Thin'), local('TTNorms-Thin'),
+      url('../fonts/TTNorms-Thin.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/TTNorms-Thin.woff') format('woff'),
+      url('../fonts/TTNorms-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Norms';
+  src: url('../fonts/TTNorms-Regular.eot');
+  src: local('TT Norms Regular'), local('TTNorms-Regular'),
+      url('../fonts/TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/TTNorms-Regular.woff') format('woff'),
+      url('../fonts/TTNorms-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Norms';
+  src: url('../fonts/TTNorms-Light.eot');
+  src: local('TT Norms Light'), local('TTNorms-Light'),
+      url('../fonts/TTNorms-Light.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/TTNorms-Light.woff') format('woff'),
+      url('../fonts/TTNorms-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Norms';
+  src: url('../fonts/TTNorms-ExtraLight.eot');
+  src: local('TT Norms ExtraLight'), local('TTNorms-ExtraLight'),
+      url('../fonts/TTNorms-ExtraLight.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/TTNorms-ExtraLight.woff') format('woff'),
+      url('../fonts/TTNorms-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Norms';
+  src: url('../fonts/TTNorms-Medium.eot');
+  src: local('TT Norms Medium'), local('TTNorms-Medium'),
+      url('../fonts/TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/TTNorms-Medium.woff') format('woff'),
+      url('../fonts/TTNorms-Medium.ttf') format('truetype');
   font-weight: 500;
-  src: url('../fonts/TTNorms-Medium.eot?') format("eot"),
-    url('../fonts/TTNorms-Medium.woff') format('woff'),
-    url('../fonts/TTNorms-Medium.ttf') format('truetype');
+  font-style: normal;
 }
 
-.Panel#page,
-.Panel#time,
-.Panel#schedule,
-.Panel#archive,
-.Panel#profile,
-.Panel#first {
+.Panel {
   font-family: 'TT Norms';
-  font-weight: 400;
-}
-
-.Panel#feed {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .center-text {

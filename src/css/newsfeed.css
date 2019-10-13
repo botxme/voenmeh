@@ -6,10 +6,9 @@
 }
 
 .post_title {
-  font-family: 'TT Norms Light';
   font-size: 20px;
+  font-weight: 300;
   color: rgb(255, 255, 255);
-  font-weight: 400;
 }
 
 .post {
@@ -21,7 +20,6 @@
 }
 
 .post_tag {
-  font-family: 'TT Norms Light';
   font-size: 15px;
   line-height: 1.2;
   margin-right: 10px;
@@ -38,7 +36,6 @@
 }
 
 .post_date {
-  font-family: 'TT Norms Light';
   font-size: 14px;
 }
 
@@ -50,11 +47,10 @@
 
 .post_author {
   padding-left: 4px;
-  font-family: "TT Norms Light";
 }
 
 .Panel__title {
-  font-family: TT Commons;
+  font-family: 'TT Commons';
   font-size: 32px;
   font-weight: 600;
   line-height: 32px;
@@ -68,4 +64,8 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   background-color: #fff;
+}
+
+.Cell__main {
+  padding: 0px 8px 0px 0 !important;
 }
