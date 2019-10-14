@@ -59,12 +59,12 @@ const News = [
 let list = [
   {
     "id": 1, "url": "https://vk.com/app6969696", "image": {
-      "url": "https://psv4.userapi.com/c856324/u462723039/docs/d1/bf27d3c1a652/banner_epta.png?extra=glQg9H7ASzOuw-VG5rM2777KQqSk7Y88Zenw-p48hahQ4U84uGGq8Qx4106TpSDdIXZWD4lk9iTk3Px1OFgYdPpKaJlkl3bZkTeeyhlsvU5h1LVT82zNICTXY_9KrYeE-SlfUTxyc8RJAhSkbxtmXRxXPVM", "thumb": ""
+      "url": require('../images/banner_1.png'), "thumb": ""
     }
   },
   {
     "id": 2, "url": "https://vk.com/app6969696", "image": {
-      "url": "https://psv4.userapi.com/c848124/u462723039/docs/d9/811086f4150c/banner_yopta_2.png?extra=dWjy7N-I5h0EZl-mN5xA34IHHL0NCcHCjDYv3OIjILJO9OBTDDy43Rt8L6iGNFFD_Kd849hGrkJOCMYwXRivmZpS5LViMXJZoLPDSVoecEx_GVEwdQKURxi4whNqPpikNwAIhs6VKxZlNBAXUkGqtdJDhU0", "thumb": ""
+      "url": require('../images/banner_2.png'), "thumb": ""
     }
   },
 ]
