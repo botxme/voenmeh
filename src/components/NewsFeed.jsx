@@ -102,13 +102,13 @@ class NewsFeed extends Component {
   render() {
     const posts = this.sposts.length > 0 &&
       this.sposts.map((post, id) => (
-        <div key={id}>
+        <div key={id} >
           <Cell
             key={id}
             size='l'
             expandable={true}
             multiline={true}
-            asideContent={IS_PLATFORM_ANDROID?<Icon24Chevron className="Cell__chevron"/>:''}
+            asideContent={IS_PLATFORM_ANDROID ? <Icon24Chevron className="Cell__chevron" /> : ''}
             onClick={() => {
               this.props.variable.goForward("page");
               this.props.updateData.updateData(post)
@@ -133,7 +133,7 @@ class NewsFeed extends Component {
               </div>
             }
           ><div className="post_title">{post.title}</div></Cell>
-          <Separator style={{ margin: '5px 0' }} />
+          <Separator />
         </div>
       ));
 
