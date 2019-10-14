@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, PanelHeader, Search, Cell, Separator } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Search, Cell, Separator, IS_PLATFORM_ANDROID } from '@vkontakte/vkui';
 import '../css/newsfeed.css';
 import Carousel from './Carousel.jsx'
 import Icon24Chevron from '@vkontakte/icons/dist/24/chevron';
@@ -108,7 +108,7 @@ class NewsFeed extends Component {
             size='l'
             expandable={true}
             multiline={true}
-            asideContent={<Icon24Chevron className="Cell__chevron"/>}
+            asideContent={IS_PLATFORM_ANDROID?<Icon24Chevron className="Cell__chevron"/>:''}
             onClick={() => {
               this.props.variable.goForward("page");
               this.props.updateData.updateData(post)
