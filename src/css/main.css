@@ -114,6 +114,8 @@
 .Panel {
   font-family: 'TT Norms';
   font-weight: 300;
+  font-variant-ligatures: no-common-ligatures;
+  -webkit-font-variant-ligatures: no-common-ligatures;
 }
 
 .center-text {
