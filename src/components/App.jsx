@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import connect from '@vkontakte/vk-connect';
-import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader, FormLayout, FormLayoutGroup, Avatar, Select, Div, Button } from '@vkontakte/vkui';
+import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader, FormLayout, FormLayoutGroup, Avatar, Select, Div, Button, IS_PLATFORM_ANDROID } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import '../css/main.css';
@@ -32,11 +32,22 @@ class App extends Component {
       activePage: localStorage.group != undefined ? 'schedule' : 'first',
       activePanel: 'feed',
       history: ['feed'],
-      data: ''
+      data: '',
+      classTab: '',
+      height: 0
     };
+
+    this.updateDimensions = this.updateDimensions.bind(this);
+  }
+
+
+  updateDimensions() {
+    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < this.state.height))?'tabbarDisable':'' })
   }
 
   changePage(name) {
+    this.setState({ height: window.innerHeight });
+    this.updateDimensions();
     this.setState({ activePage: name });
   }
 
@@ -49,6 +60,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
     window.addEventListener('popstate', (event) => {
       console.log("назад")
       const his = [...this.state.history];
@@ -79,7 +91,7 @@ class App extends Component {
 
   render() {
     const tabbar = (
-      <Tabbar>
+      <Tabbar className={this.state.classTab}>
         <TabbarItem
           onClick={() => this.changePage('feed')}
           selected={this.state.activePage == 'feed'}
