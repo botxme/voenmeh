@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Panel, PanelHeader, Search, Cell, Separator } from '@vkontakte/vkui';
 import '../css/newsfeed.css';
 import Carousel from './Carousel.jsx'
+import Icon24Chevron from '@vkontakte/icons/dist/24/chevron';
 
 const News = [
   {
@@ -107,6 +108,7 @@ class NewsFeed extends Component {
             size='l'
             expandable={true}
             multiline={true}
+            asideContent={<Icon24Chevron className="Cell__chevron"/>}
             onClick={() => {
               this.props.variable.goForward("page");
               this.props.updateData.updateData(post)
@@ -131,7 +133,7 @@ class NewsFeed extends Component {
               </div>
             }
           ><div className="post_title">{post.title}</div></Cell>
-          <Separator style={{ margin: '12px 0' }} />
+          <Separator style={{ margin: '5px 0' }} />
         </div>
       ));
 
