@@ -37,11 +37,13 @@ module.exports = {
       }
     ]
   },
+  mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
     new ErudaWebpackPlugin({
+      force: true,
       entry: /index\.js$/
     })
   ],
