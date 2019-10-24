@@ -3,12 +3,8 @@
   margin: 0px 0px;
 }
 
-.lesson:not(:last-child) {
-  border-bottom: .5px solid #edeef0;
-}
-
 .lesson {
-  padding: 15px 0px 15px 5px;
+  padding: 15px 10px;
   display: flex;
 }
 
@@ -21,8 +17,6 @@
   justify-content: space-between;
 }
 
-/* background: #4286f4; */
-
 .lesson_content {
   padding-left: 10px;
   border-left: 1.5px solid #4286f4;
@@ -34,10 +28,4 @@
 
 .lesson_type {
   color: #4286f4;
-}
-
-.lessons_date {
-  font-weight: 500;
-  color: #fff;
-  padding: 20px 10px;
 }

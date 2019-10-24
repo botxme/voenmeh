@@ -78,7 +78,7 @@ class NewsFeed extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.ucFirst = this.ucFirst.bind(this);
+    this.FirstLetUP = this.FirstLetUP.bind(this);
   }
 
   /* поиск */
@@ -86,7 +86,7 @@ class NewsFeed extends Component {
     this.setState({ search: search.replace(/\s+/g, ' ') });
   }
 
-  ucFirst(str) {
+  FirstLetUP(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
 
@@ -118,7 +118,7 @@ class NewsFeed extends Component {
                 <div className="post_td">
                   <div className="post_tags">
                     {post.tags.map((tag, id) => (
-                      <div className="post_tag" key={id}>{this.ucFirst(tag)}</div>
+                      <div className="post_tag" key={id}>{this.FirstLetUP(tag)}</div>
                     ))}
                   </div>
                 </div>

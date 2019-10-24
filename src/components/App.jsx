@@ -6,7 +6,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 import '../css/main.css';
 import '../css/first.css';
 
-import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
+import Icon28ArticleOutline from '@vkontakte/icons/dist/28/article_outline';
 import Icon16Fire from '@vkontakte/icons/dist/16/fire';
 import Icon56EventOutline from '@vkontakte/icons/dist/56/event_outline';
 import Icon28ArchiveOutline from '@vkontakte/icons/dist/28/archive_outline';
@@ -95,7 +95,7 @@ class App extends Component {
         <TabbarItem
           onClick={() => this.changePage('feed')}
           selected={this.state.activePage == 'feed'}
-        ><Icon24Newsfeed /></TabbarItem>
+        ><Icon28ArticleOutline /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('time')}

@@ -1,0 +1,33 @@
+.dateContainer {
+  display: inline-flex;
+}
+
+.dateText {
+  font-weight: normal;
+}
+
+.monthText {
+  padding-left: 4px;
+  font-weight: 300;
+}
+
+.dayText {
+  font-size: 11px;
+}
+
+.singleContainer {
+  margin: 0px 5px;
+  height: 50px;
+  min-width: 100px;
+  background-color: #767778;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.activeDate {
+  background-color: #7fb0ef;
+}
