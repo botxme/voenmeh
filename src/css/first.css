@@ -4,7 +4,12 @@
 }
 
 .select_group {
-  margin-top: 250px;
+  /*margin-top: 250px;*/
+  margin-top: 25vh;
+}
+
+.button_top-text {
+  padding: 0 14px;
 }
 
 .button_FirstPage {

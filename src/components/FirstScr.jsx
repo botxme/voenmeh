@@ -1,46 +1,71 @@
 import React, { Component } from 'react';
-import { Root, Div, Button, View, Panel, PanelHeader, FormLayout, Avatar, Select, FormLayoutGroup, Group, List, Cell } from '@vkontakte/vkui';
+import { Div, Button, Panel, PanelHeader, FormLayout, Avatar, Select, FormLayoutGroup } from '@vkontakte/vkui';
 import '../css/first.css';
-import Groups from './groups.js';
+import constants from './constants';
 
 class FirstScr extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { group: {}, disabled: true }
+    this.state = {};
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(e) {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
-    this.setState({ disabled: false });
   }
 
   render() {
-    const groups = Groups.map((group) => (
-      <option value={JSON.stringify(group)} key={group.id}>{group.name}</option>
-    ));
+    const faculties = constants.api.map((fac, id) => (
+      <option value={JSON.stringify(fac)} key={id}>{fac.faculty}</option>
+    ))
+
+    const groups = this.state.faculty ? JSON.parse(this.state.faculty).groups.map((fac, id) => (
+      <option value={JSON.stringify(fac)} key={id}>{fac.name}</option>
+    )) : <option value={null}></option>
 
     return (
       <Panel id="first" >
         <PanelHeader>Авторизация</PanelHeader>
-        <FormLayout>
-          <Avatar className="logo center" size={80} type="app" src={require('../images/logo.png')} />
-          <FormLayoutGroup className="select_group">
-            <div className="center">Пожалуйста, выберите свою группу</div>
-            <Select placeholder="Не выбрана" onChange={this.onChange} value={this.state.group} name="group">
+        <FormLayoutGroup>
+          {/* <Avatar className="logo center" size={80} type="app" src={require('../images/logo.png')} /> */}
+          <FormLayout className="select_group">
+            <div className="button_top-text">Пожалуйста, выберите свой факультет</div>
+            <Select
+              placeholder="Не выбран"
+              onChange={this.onChange}
+              value={this.state.faculty}
+              name="faculty">
+              {faculties}
+            </Select>
+
+            <div className="button_top-text">Пожалуйста, выберите свою группу</div>
+            <Select
+              placeholder="Не выбрана"
+              onChange={this.onChange}
+              value={this.state.group}
+              disabled={!this.state.faculty}
+              name="group">
               {groups}
             </Select>
-          </FormLayoutGroup>
+          </FormLayout>
 
           <Div className="button_FirstPage">
-            <Button onClick={() => {
-              localStorage.setItem('group', this.state.group);
-              this.props.variable.changePage('schedule');
-            }} size="l" stretched style={{ margin: 0 }} disabled={this.state.disabled}>Продолжить</Button>
+            <Button
+              onClick={() => {
+                localStorage.setItem('group', this.state.group);
+                localStorage.setItem('faculty', JSON.parse(this.state.faculty).faculty);
+                this.props.variable.changePage('schedule');
+              }}
+              size="l"
+              stretched
+              style={{ margin: 0 }}
+              disabled={!this.state.group}>
+              Продолжить
+            </Button>
           </Div>
-        </FormLayout>
+        </FormLayoutGroup>
       </Panel>
     );
   }
