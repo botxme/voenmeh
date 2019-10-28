@@ -22,12 +22,13 @@ class DatePickerComponent extends React.Component {
 
     const first = firstDate ? moment(firstDate) : moment(new Date());
     const selected = selectedDate ? moment(selectedDate) : first;
-
     const selectedDayIndex = moment.duration(selected.diff(first)).asDays();
 
     this.setState({
       selectedDayIndex,
     });
+
+    this.props.variable.pickDate(selected)
   }
 
   FirstLetUP(str) {
@@ -42,6 +43,7 @@ class DatePickerComponent extends React.Component {
         selectedDay: props.date
       }
     );
+    this.props.variable.pickDate(props.date)
 
     if (typeof onDateSelect === 'function') {
       onDateSelect(props.date);
@@ -109,9 +111,9 @@ class DatePickerComponent extends React.Component {
             key={key}
             disabled={val.disabled}
             onClick={() => {
-              console.log(val);
+              //console.log(val);
               this.dateSelect({
-                key, date: availableDates[key].date
+                key, date: moment(availableDates[key].date)
               })
             }}>
             <div className={"singleDateBox"}>
@@ -130,13 +132,14 @@ class DatePickerComponent extends React.Component {
       });
     }
 
+    let k = moment(selectedDay).week() / 2;
     return (<div>
       <HorizontalScroll>
         <div style={{ display: 'flex', padding: '25px 10px' }}>
           {days || null}
         </div>
       </HorizontalScroll>
-      <div style={{ paddingLeft: '15px', fontWeight: 500 }}>{this.FirstLetUP(moment(selectedDay).format('dddd, DD MMMM'))}</div>
+      <div style={{ paddingLeft: '15px', fontWeight: 500 }}>{this.FirstLetUP(moment(selectedDay).format('dddd, DD MMMM')) + ` (${(k != Math.floor(k)) ? 'четная' : 'нечётная'} неделя)`}</div>
     </div>
     );
   }

@@ -14,6 +14,7 @@ class Profile extends Component {
       group: localStorage.getItem('group')
     };
     this.onChange = this.onChange.bind(this);
+    this.initLocal = this.initLocal.bind(this);
   }
 
   onChange(e) {
@@ -21,7 +22,18 @@ class Profile extends Component {
     this.setState({ [name]: value });
   }
 
+  initLocal(fac) {
+    // запись расписания в localstorage для определенной группы
+    switch (fac || localStorage.getItem('faculty')) {
+      case '«И»':
+        return localStorage.setItem('shed', JSON.stringify(require('./formatGroupI.json')[JSON.parse(this.state.group).id]));
+      default:
+        return null
+    }
+  }
+
   render() {
+    this.initLocal();
     const faculties = constants.api.map((fac, id) => (
       <option value={JSON.stringify(fac)} key={id}>{fac.faculty}</option>
     ))

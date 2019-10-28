@@ -9,11 +9,22 @@ class FirstScr extends Component {
 
     this.state = {};
     this.onChange = this.onChange.bind(this);
+    this.initLocal = this.initLocal.bind(this);
   }
 
   onChange(e) {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
+  }
+
+  initLocal(fac, group) {
+    // запись расписания в localstorage для определенной группы
+    switch (fac || localStorage.getItem('faculty')) {
+      case '«И»':
+        return localStorage.setItem('shed', JSON.stringify(require('./formatGroupI.json')[JSON.parse(group).id]));
+      default:
+        return null
+    }
   }
 
   render() {
@@ -54,6 +65,7 @@ class FirstScr extends Component {
           <Div className="button_FirstPage">
             <Button
               onClick={() => {
+                this.initLocal(JSON.parse(this.state.faculty).faculty, this.state.group);
                 localStorage.setItem('group', this.state.group);
                 localStorage.setItem('faculty', JSON.parse(this.state.faculty).faculty);
                 this.props.variable.changePage('schedule');
