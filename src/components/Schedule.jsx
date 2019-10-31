@@ -45,24 +45,23 @@ class Schedule extends Component {
     if (weekDay == -1) return this.setState({ lessons: [null] });
     if (!odd[weekDay] || !even[weekDay]) return this.setState({ lessons: [null] });
 
+    let les = [];
     if (k != Math.floor(k)) {
-      fillDay(even[weekDay].reverse()[0].numb - 1)
       console.log('четная', weekDay, k)
 
       even[weekDay].map(l => {
-        lessons[l.numb - 1] = l
+        les[l.numb - 1] = l
       })
 
-      this.setState({ lessons })
+      this.setState({ lessons: les })
     } else {
-      fillDay(odd[weekDay].reverse()[0].numb - 1)
       console.log('нечетная', weekDay, k)
 
       odd[weekDay].map(l => {
-        lessons[l.numb - 1] = l
+        les[l.numb - 1] = l
       })
 
-      this.setState({ lessons })
+      this.setState({ lessons: les })
     }
   }
 
@@ -81,11 +80,12 @@ class Schedule extends Component {
       )
 
       //console.log(les)
-      const { Time, TypeLesson, Discipline, Classroom, Lecturer } = les;
+      const { Time, TypeLesson, Discipline, Classroom, Lecturer, numb } = les;
       return (<div key={id}>
         <div className="lesson">
           <div className="lesson_time">
             <div>{Time[0]}</div>
+            <div className="lesson_numb">{numb}</div>
             <div>{Time[1]}</div>
           </div>
           <div className="lesson_border"></div>
@@ -100,23 +100,6 @@ class Schedule extends Component {
     }
 
     );
-    /*const lessons = this.state.lessons.map(({ time, type, name, room, teacher }) => (
-      <div key={time + name + room}>
-        <div className="lesson">
-          <div className="lesson_time">
-            <div>{time[0]}</div>
-            <div>{time[1]}</div>
-          </div>
-          <div className="lesson_border"></div>
-          <div className="lesson_content">
-            <div className="lesson_type">{type.toUpperCase()}</div>
-            <div className="lesson_name">{name}</div>
-            {room ? <div className="lesson_room">Аудитория: {room}</div> : false}
-            {teacher ? <div className="lesson_teacher">Преподаватель: {teacher}</div> : false}
-          </div>
-        </div>
-        <Separator /></div>
-    ));*/
 
     return (
       <Panel id="schedule">

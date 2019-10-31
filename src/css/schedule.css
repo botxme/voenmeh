@@ -9,6 +9,7 @@
 }
 
 .lesson_time {
+  font-weight: 400;
   min-width: 41px;
   display: flex;
   flex-direction: column;
