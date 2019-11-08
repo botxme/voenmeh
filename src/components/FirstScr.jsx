@@ -14,7 +14,11 @@ class FirstScr extends Component {
 
   onChange(e) {
     const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+    if (value.trim().length > 0) {
+      this.setState({ [name]: value });
+    } else {
+      this.setState({ [name]: false });
+    }
   }
 
   initLocal(fac, group) {
@@ -73,7 +77,7 @@ class FirstScr extends Component {
               size="l"
               stretched
               style={{ margin: 0 }}
-              disabled={!this.state.group}>
+              disabled={!this.state.group || !this.state.faculty}>
               Продолжить
             </Button>
           </Div>

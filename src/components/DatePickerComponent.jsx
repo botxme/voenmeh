@@ -139,7 +139,7 @@ class DatePickerComponent extends React.Component {
           {days || null}
         </div>
       </HorizontalScroll>
-      <div style={{ paddingLeft: '15px', fontWeight: 500 }}>{this.FirstLetUP(moment(selectedDay).format('dddd, DD MMMM')) + ` (${(k != Math.floor(k)) ? 'четная' : 'нечётная'} неделя)`}</div>
+      <div style={{ textAlign: "center", fontWeight: 500 }}>{this.FirstLetUP(moment(selectedDay).format('dddd, D MMMM')) + ` (${(k != Math.floor(k)) ? 'четная' : 'нечетная'} неделя)`}</div>
     </div>
     );
   }

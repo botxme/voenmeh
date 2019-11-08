@@ -4,7 +4,7 @@
 }
 
 .lesson {
-  padding: 15px 10px;
+  padding: 15px 12px;
   display: flex;
 }
 
@@ -28,5 +28,20 @@
 }
 
 .lesson_type {
+  font-weight: 400;
   color: #4286f4;
+}
+
+.lesson_name {
+  font-weight: 400;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
