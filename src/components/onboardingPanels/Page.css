@@ -2,10 +2,15 @@
   /*height: 0;*/
   padding-top: 10px;
   width: 100%;
-  display: flex;
+  display: flex !important;
   align-items: center;
   flex-direction: column;
   text-align: center;
+  white-space: pre-line
+}
+
+.slick-track {
+  height: 84vh;
 }
 
 .image {
@@ -13,7 +18,7 @@
   height: 100%;
 }
 
-.text1 {
+.title {
   font-family: "TT Norms";
   font-weight: bold;
   padding: 45px 0 20px 0;
@@ -22,7 +27,7 @@
   color: rgb(255, 255, 255);
 }
 
-.text2 {
+.subtitle {
   font-family: "TT Norms";
   font-weight: normal;
   font-size: 15px;
@@ -33,16 +38,16 @@
 .button_Panel {
   display: flex;
   position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 5vh;
+  width: 90vw;
+  bottom: 5.5vh;
+  justify-content: center;
 }
 
 .dots {
   display: inline-flex;
   align-items: center;
   position: fixed;
-  bottom: 3vh;
+  bottom: 0px;
 }
 
 .dot {

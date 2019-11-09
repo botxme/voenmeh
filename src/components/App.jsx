@@ -20,12 +20,14 @@ import FirstScr from './FirstScr.jsx';
 import NewsFeed from './NewsFeed.jsx';
 import Deadlines from './Deadlines.jsx';
 import Page from './Page.jsx';
-import Panel0 from './onboardingPanels/Panel0.jsx';
-import Panel1 from './onboardingPanels/Panel1.jsx';
-import Panel2 from './onboardingPanels/Panel2.jsx';
-import Panel3 from './onboardingPanels/Panel3.jsx';
-import Panel4 from './onboardingPanels/Panel4.jsx';
-import Panel5 from './onboardingPanels/Panel5.jsx';
+
+import Onboarding from './onboardingPanels/Onboarding.jsx';
+import phone0 from './onboardingPanels/phone0.png';
+import phone1 from './onboardingPanels/phone1.png';
+import phone2 from './onboardingPanels/phone2.png';
+import phone3 from './onboardingPanels/phone3.png';
+import phone4 from './onboardingPanels/phone4.png';
+import phone5 from './onboardingPanels/phone5.png';
 
 // Sends event to client
 connect.send('VKWebAppInit');
@@ -35,8 +37,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activePage: localStorage.group != undefined ? 'schedule' : 'first',
-      activePanelOnBoarding: 'panel0',
+      activePage: localStorage.group != undefined ? 'schedule' : 'onbording',
       activePanel: 'feed',
       history: ['feed'],
       data: '',
@@ -45,7 +46,6 @@ class App extends Component {
     };
 
     this.updateDimensions = this.updateDimensions.bind(this);
-    this.changePanelOnBoarding = this.changePanelOnBoarding.bind(this);
   }
 
 
@@ -61,10 +61,6 @@ class App extends Component {
 
   changePanel(name) {
     this.setState({ activePanel: name });
-  }
-
-  changePanelOnBoarding(name) {
-    this.setState({ activePanelOnBoarding: name });
   }
 
   updateData(value) {
@@ -132,7 +128,7 @@ class App extends Component {
     );
 
     return (
-      <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage != "first") ? tabbar : false}>
+      <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage === "first" || this.state.activePage === "onbording") ? null : tabbar}>
         <View
           id="feed"
           activePanel={this.state.activePanel}
@@ -159,14 +155,23 @@ class App extends Component {
           <Profile id="profile" />
         </View>
 
-        <View id="first" activePanel={this.state.activePanelOnBoarding}>
-          <Panel0 id="panel0" variable={this} />
-          <Panel1 id="panel1" variable={this} />
-          <Panel2 id="panel2" variable={this} />
-          <Panel3 id="panel3" variable={this} />
-          <Panel4 id="panel4" variable={this} />
-          <Panel5 id="panel5" variable={this} />
+        <View id="first" activePanel="first">
           <FirstScr id="first" variable={this} />
+        </View>
+
+        <View id="onbording" activePanel="onbording">
+          <Onboarding
+            variable={this}
+            id="onbording"
+            pages={[
+              { image: phone0, title: `Встречайте —\nВоенмех ВКонтакте`, subtitle: 'Первый локальный студенческий сервис\nвнутри социальной сети.\nНе нужно ничего скачивать и устанавливать —\nэто чудесно, не правда ли?' },
+              { image: phone1, title: 'Следи за новостями!', subtitle: 'В этом разделе у нас царит гармония и порядок:\nвсе новости отсортированы по факультетам,\nпоэтому ты не пропустишь ничего важного.' },
+              { image: phone2, title: 'Создавай дедлайны!', subtitle: 'Укажи название задачи, комментарий и время.\nКогда сроки начнут гореть —\nсервис пришлет уведомление ВКонтакте.' },
+              { image: phone3, title: 'Смотри расписание!', subtitle: 'Свайпни календарь и выбери дату,\nчтобы посмотреть расписание на другой день.' },
+              { image: phone4, title: 'Самое важное в архиве!', subtitle: 'Здесь размещена полезная информация\nдля каждого студента Военмеха.\nНе отвлекай никого — посмотри в архиве.' },
+              { image: phone5, title: 'Настрой сервис под себя!', subtitle: 'По умолчанию включены все виды уведомлений\nи сортировка новостной ленты по факультетам.' },
+            ]}
+          />
         </View>
       </Epic >
     );
