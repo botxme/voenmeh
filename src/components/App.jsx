@@ -20,6 +20,12 @@ import FirstScr from './FirstScr.jsx';
 import NewsFeed from './NewsFeed.jsx';
 import Deadlines from './Deadlines.jsx';
 import Page from './Page.jsx';
+import Panel0 from './onboardingPanels/Panel0.jsx';
+import Panel1 from './onboardingPanels/Panel1.jsx';
+import Panel2 from './onboardingPanels/Panel2.jsx';
+import Panel3 from './onboardingPanels/Panel3.jsx';
+import Panel4 from './onboardingPanels/Panel4.jsx';
+import Panel5 from './onboardingPanels/Panel5.jsx';
 
 // Sends event to client
 connect.send('VKWebAppInit');
@@ -30,6 +36,7 @@ class App extends Component {
 
     this.state = {
       activePage: localStorage.group != undefined ? 'schedule' : 'first',
+      activePanelOnBoarding: 'panel0',
       activePanel: 'feed',
       history: ['feed'],
       data: '',
@@ -38,11 +45,12 @@ class App extends Component {
     };
 
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.changePanelOnBoarding = this.changePanelOnBoarding.bind(this);
   }
 
 
   updateDimensions() {
-    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < this.state.height))?'tabbarDisable':'' })
+    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < this.state.height)) ? 'tabbarDisable' : '' })
   }
 
   changePage(name) {
@@ -53,6 +61,10 @@ class App extends Component {
 
   changePanel(name) {
     this.setState({ activePanel: name });
+  }
+
+  changePanelOnBoarding(name) {
+    this.setState({ activePanelOnBoarding: name });
   }
 
   updateData(value) {
@@ -147,7 +159,13 @@ class App extends Component {
           <Profile id="profile" />
         </View>
 
-        <View id="first" activePanel="first">
+        <View id="first" activePanel={this.state.activePanelOnBoarding}>
+          <Panel0 id="panel0" variable={this} />
+          <Panel1 id="panel1" variable={this} />
+          <Panel2 id="panel2" variable={this} />
+          <Panel3 id="panel3" variable={this} />
+          <Panel4 id="panel4" variable={this} />
+          <Panel5 id="panel5" variable={this} />
           <FirstScr id="first" variable={this} />
         </View>
       </Epic >

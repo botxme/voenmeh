@@ -13,10 +13,10 @@
   "author": "danyadev <danyadev@mail.ru>, vbiralo <admin@bot-x.me>, krethub <krethub@mail.ru>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.6.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@babel/runtime": "^7.7.2",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "eruda-webpack-plugin": "^1.2.0",
@@ -24,22 +24,21 @@
     "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "moment": "^2.24.0",
-    "react-date-picker": "^7.8.2",
-    "react-native-calendar-picker": "^6.0.1",
     "react-slick": "^0.25.2",
     "style-loader": "^1.0.0",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8",
-    "webpack-dev-server": "^3.8.0"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "@vkontakte/icons": "^1.10.2",
-    "@vkontakte/vk-connect": "^1.6.5",
+    "@vkontakte/icons": "^1.11.1",
+    "@vkontakte/vk-connect": "^1.6.8",
     "@vkontakte/vk-connect-promise": "^0.2.0",
-    "@vkontakte/vkui": "^2.30.2",
-    "eruda": "^1.6.3",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "@vkontakte/vkui": "^2.32.4",
+    "eruda": "^1.10.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-native-onboarding-screen": "^1.0.3"
   },
   "browserslist": [
     ">0.2%",

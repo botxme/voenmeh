@@ -1,0 +1,52 @@
+.onboarding {
+  /*height: 0;*/
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.image {
+  width: 30vh;
+  height: 100%;
+}
+
+.text1 {
+  font-family: "TT Norms";
+  font-weight: bold;
+  padding: 45px 0 20px 0;
+  font-size: 25px;
+  line-height: 1.2;
+  color: rgb(255, 255, 255);
+}
+
+.text2 {
+  font-family: "TT Norms";
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 1.2;
+  color: rgb(255, 255, 255);
+}
+
+.button_Panel {
+  display: flex;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 5vh;
+}
+
+.dots {
+  display: inline-flex;
+  align-items: center;
+  position: fixed;
+  bottom: 3vh;
+}
+
+.dot {
+  background-color: #fff;
+  margin: 0 4px;
+  border-radius: 30px;
+}
