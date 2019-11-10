@@ -1,21 +1,21 @@
 .onboarding {
-  /*height: 0;*/
-  padding-top: 10px;
+  height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+  padding-top: 1vh;
   width: 100%;
   display: flex !important;
+  outline: none !important;
   align-items: center;
   flex-direction: column;
   text-align: center;
   white-space: pre-line
 }
 
-.slick-track {
-  height: 84vh;
-}
-
 .image {
   width: 30vh;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 .title {
@@ -35,11 +35,13 @@
   color: rgb(255, 255, 255);
 }
 
-.button_Panel {
-  display: flex;
+.button_next {
+  bottom: 1vh;
   position: fixed;
-  width: 90vw;
-  bottom: 5.5vh;
+}
+
+.button_Panel {
+  width: 90vw !important;
   justify-content: center;
 }
 
@@ -47,7 +49,11 @@
   display: inline-flex;
   align-items: center;
   position: fixed;
-  bottom: 0px;
+  right: 0px;
+  padding: 4vh 0;
+  bottom: 0;
+  justify-content: center;
+  left: 0;
 }
 
 .dot {

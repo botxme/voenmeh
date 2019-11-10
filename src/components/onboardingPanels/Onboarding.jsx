@@ -12,12 +12,10 @@ class Onboarding extends Component {
     super();
 
     this.state = {
-      slideIndex: 0,
-      count: 0
+      slideIndex: 0
     }
 
     this.slider = null
-    this.justSwiped = false
     this.next = this.next.bind(this);
   }
 
@@ -34,8 +32,7 @@ class Onboarding extends Component {
       infinite: false,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (current, next) => this.setState({ slideIndex: next }),
-      customPaging: i => this.setState({ count: i })
+      beforeChange: (current, next) => this.setState({ slideIndex: next })
     };
 
     const PageDot = ({ selected, id }) => (
@@ -59,7 +56,7 @@ class Onboarding extends Component {
     );
 
     return (
-      <Panel id="onboarding" style={{ height: "90vh" }}>
+      <Panel id="onboarding">
         <Slider {...settings} ref={c => (this.slider = c)}>
           {pages.map((page, key) => {
             let { image, title, subtitle } = page;
@@ -70,23 +67,24 @@ class Onboarding extends Component {
               <span className="title">{title}</span>
               <span className="subtitle">{subtitle}</span>
 
-              <Button
-                onClick={() => {
-                  slideIndex == 5 ? this.props.variable.changePage('first') : this.next()
-                }}
-                size="l"
-                stretched
-                className="button_Panel"
-                style={{ margin: 0 }}>
-                {slideIndex == 5 ? 'Всё понятно!' : <div>Далее <Icon24BrowserForward style={{ display: "inline-block", verticalAlign: "middle" }} width={14} height={14} /></div>}
+              <div className="button_next">
+                <Button
+                  onClick={() => {
+                    slideIndex == 5 ? this.props.variable.changePage('first') : this.next()
+                  }}
+                  size="l"
+                  stretched
+                  className="button_Panel"
+                  style={{ margin: 0 }}>
+                  {slideIndex == 5 ? 'Всё понятно!' : <div>Далее <Icon24BrowserForward style={{ display: "inline-block", verticalAlign: "middle" }} width={14} height={14} /></div>}
 
-              </Button>
-
-              <PageDots pages={6} currentPage={slideIndex} />
+                </Button>
+              </div>
             </div>
           })
           }
         </Slider>
+        <PageDots pages={6} currentPage={this.state.slideIndex} />
       </Panel>
     );
   }

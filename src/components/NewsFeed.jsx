@@ -59,12 +59,12 @@ const News = [
 let list = [
   {
     "id": 1, "url": "https://vk.com/app6969696", "image": {
-      "url": require('../images/banner_1.png'), "thumb": ""
+      "url": '../images/banner_1.png', "thumb": ""
     }
   },
   {
     "id": 2, "url": "https://vk.com/app6969696", "image": {
-      "url": require('../images/banner_2.png'), "thumb": ""
+      "url": '../images/banner_2.png', "thumb": ""
     }
   },
 ]
