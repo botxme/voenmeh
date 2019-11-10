@@ -7,8 +7,8 @@ import '../css/main.css';
 import '../css/first.css';
 
 import Icon28ArticleOutline from '@vkontakte/icons/dist/28/article_outline';
-import Icon16Fire from '@vkontakte/icons/dist/16/fire';
-import Icon56EventOutline from '@vkontakte/icons/dist/56/event_outline';
+import Icon28FireOutline from '@vkontakte/icons/dist/28/fire_outline';
+import Icon20CalendarOutline from '@vkontakte/icons/dist/20/calendar_outline';
 import Icon28ArchiveOutline from '@vkontakte/icons/dist/28/archive_outline';
 import Icon28Profile from '@vkontakte/icons/dist/28/profile';
 
@@ -108,12 +108,12 @@ class App extends Component {
         <TabbarItem
           onClick={() => this.changePage('time')}
           selected={this.state.activePage == 'time'}
-        ><Icon16Fire width={24} height={24} /></TabbarItem>
+        ><Icon28FireOutline /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('schedule')}
           selected={this.state.activePage == 'schedule'}
-        ><Icon56EventOutline width={28} height={28} /></TabbarItem>
+        ><Icon20CalendarOutline width={28} height={28} /></TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('archive')}
