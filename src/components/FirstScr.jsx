@@ -43,7 +43,7 @@ class FirstScr extends Component {
     return (
       <Panel id="first" >
         <div className="onboarding">
-          <img src={require('../images/firstP_dark.png')} className="image_first" />
+          {/* <img src={require('../images/firstP_dark.png')} className="image_first" /> */}
 
           <span className="title">Пора знакомиться!</span>
           <span className="subtitle">Чтобы продолжить работу с сервисом,<br />необходимо выбрать свой факультет и группу.<br />Благодаря этим данным мы сможем фильтровать<br />ленту новостей и показать твоё расписание.</span>
