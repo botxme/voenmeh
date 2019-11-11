@@ -70,21 +70,20 @@ class Onboarding extends Component {
               <div className="button_next">
                 <Button
                   onClick={() => {
-                    slideIndex == 5 ? this.props.variable.changePage('first') : this.next()
+                    slideIndex == pages.length - 1 ? this.props.variable.changePage('first') : this.next()
                   }}
                   size="l"
                   stretched
                   className="button_Panel"
                   style={{ margin: 0 }}>
-                  {slideIndex == 5 ? 'Всё понятно!' : <div>Далее <Icon24BrowserForward style={{ display: "inline-block", verticalAlign: "middle" }} width={14} height={14} /></div>}
-
+                  Далее <Icon24BrowserForward style={{ display: "inline-block", verticalAlign: "middle" }} width={14} height={14} />
                 </Button>
               </div>
             </div>
           })
           }
         </Slider>
-        <PageDots pages={6} currentPage={this.state.slideIndex} />
+        <PageDots pages={pages.length} currentPage={this.state.slideIndex} />
       </Panel>
     );
   }

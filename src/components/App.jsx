@@ -28,6 +28,7 @@ import phone2 from './onboardingPanels/phone2.png';
 import phone3 from './onboardingPanels/phone3.png';
 import phone4 from './onboardingPanels/phone4.png';
 import phone5 from './onboardingPanels/phone5.png';
+import phone6 from './onboardingPanels/phone6.png';
 
 // Sends event to client
 connect.send('VKWebAppInit');
@@ -170,6 +171,7 @@ class App extends Component {
               { image: phone3, title: 'Смотри расписание!', subtitle: 'Свайпни календарь и выбери дату,\nчтобы посмотреть расписание на другой день.' },
               { image: phone4, title: 'Самое важное в архиве!', subtitle: 'Здесь размещена полезная информация\nдля каждого студента Военмеха.\nНе отвлекай никого — посмотри в архиве.' },
               { image: phone5, title: 'Настрой сервис под себя!', subtitle: 'По умолчанию включены все виды уведомлений\nи сортировка новостной ленты по факультетам.' },
+              { image: phone6, title: 'Почти готово!', subtitle: 'Осталось дело за малым:\nдобавь сервис в избранное и разреши\nприсылать уведомления, чтобы наслаждаться\nфункционалом сервиса в полной мере.' },
             ]}
           />
         </View>
