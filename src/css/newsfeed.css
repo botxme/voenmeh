@@ -38,7 +38,7 @@
 }
 
 .post_date {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .post_bot {
@@ -48,6 +48,7 @@
 }
 
 .post_author {
+  font-size: 16px;
   padding-left: 4px;
 }
 
