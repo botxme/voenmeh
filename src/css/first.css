@@ -3,9 +3,15 @@
   top: 100px;
 }
 
+.image_first {
+  width: 22vh;
+}
+
 .select_group {
-  /*margin-top: 250px;*/
-  margin-top: 25vh;
+  width: 90vw !important;
+  justify-content: center;
+  text-align: left;
+  margin-top: 4vh;
 }
 
 .button_top-text {
@@ -18,4 +24,15 @@
   right: 0;
   bottom: 10px;
   left: 0;
+}
+
+.button_next_first {
+  bottom: 7vh;
+  position: fixed;
+}
+
+.button_PanelFirst {
+  bottom: 0;
+  width: 90vw !important;
+  justify-content: center;
 }

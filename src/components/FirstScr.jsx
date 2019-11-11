@@ -42,12 +42,15 @@ class FirstScr extends Component {
 
     return (
       <Panel id="first" >
-        <PanelHeader>Авторизация</PanelHeader>
-        <FormLayoutGroup>
-          {/* <Avatar className="logo center" size={80} type="app" src={require('../images/logo.png')} /> */}
+        <div className="onboarding">
+          <img src={require('../images/firstP_dark.png')} className="image_first" />
+
+          <span className="title">Пора знакомиться!</span>
+          <span className="subtitle">Чтобы продолжить работу с сервисом,<br />необходимо выбрать свой факультет и группу.<br />Благодаря этим данным мы сможем фильтровать<br />ленту новостей и показать твоё расписание.</span>
+
           <FormLayout className="select_group">
-            <div className="button_top-text">Пожалуйста, выберите свой факультет</div>
             <Select
+              top="Выбери свой факультет"
               placeholder="Не выбран"
               onChange={this.onChange}
               value={this.state.faculty}
@@ -55,8 +58,8 @@ class FirstScr extends Component {
               {faculties}
             </Select>
 
-            <div className="button_top-text">Пожалуйста, выберите свою группу</div>
             <Select
+              top="Выбери свою группу"
               placeholder="Не выбрана"
               onChange={this.onChange}
               value={this.state.group}
@@ -66,7 +69,7 @@ class FirstScr extends Component {
             </Select>
           </FormLayout>
 
-          <Div className="button_FirstPage">
+          <div className="button_next_first">
             <Button
               onClick={() => {
                 this.initLocal(JSON.parse(this.state.faculty).faculty, this.state.group);
@@ -76,12 +79,13 @@ class FirstScr extends Component {
               }}
               size="l"
               stretched
+              className="button_Panel"
               style={{ margin: 0 }}
               disabled={!this.state.group || !this.state.faculty}>
-              Продолжить
+              Поехали!
             </Button>
-          </Div>
-        </FormLayoutGroup>
+          </div>
+        </div>
       </Panel>
     );
   }
