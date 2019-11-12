@@ -1,7 +1,8 @@
 export default class API {
 
 	static __call(method, params, httpMethod = "GET") {
-		let url = 'https://bgtu.now.sh/api/' + method
+		//let url = 'https://bgtu.now.sh/api/' + method
+		let url = 'http://localhost:3030/api/' + method
 
 		let requestParams = {
 			'method': httpMethod ? httpMethod : "GET",

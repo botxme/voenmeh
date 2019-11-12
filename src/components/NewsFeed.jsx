@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Panel, PanelHeader, Search, Cell, Separator, IS_PLATFORM_ANDROID, Spinner } from '@vkontakte/vkui';
 import '../css/newsfeed.css';
 import Carousel from './Carousel.jsx'
-import API from '../helpers/API.js';
 
 import Icon24Chevron from '@vkontakte/icons/dist/24/chevron';
 
@@ -11,31 +10,11 @@ class NewsFeed extends Component {
     super(props);
 
     this.state = {
-      search: '',
-      banners: [],
-      loaded: false,
-      News: []
+      search: ''
     };
 
     this.onChange = this.onChange.bind(this);
     this.FirstLetUP = this.FirstLetUP.bind(this);
-  }
-
-  componentDidMount() {
-    if (this.state.News.length !== 0) return this.setState({ loaded: true });
-    API.request(`getNews`, null, "GET", 3).then(news => {
-      API.request(`getBanners`, null, "GET", 3).then(banners => {
-        this.setState({ News: news })
-        this.setState({ banners: banners })
-        this.setState({ loaded: true })
-      }).catch(e => {
-        console.error(e)
-        this.setState({ loaded: true })
-      })
-    }).catch(e => {
-      console.error(e)
-      this.setState({ loaded: true })
-    })
   }
 
   /* поиск */
@@ -49,7 +28,7 @@ class NewsFeed extends Component {
 
   get sposts() {
     const search = this.state.search.toLowerCase();
-    const { News } = this.state;
+    const { News } = this.props;
     if (search.substr(0, 1) == "#") {
       return News.filter(({ tags }) => tags.join(' ').toLowerCase().indexOf(search.substr(1)) > -1)
     } else {
@@ -100,16 +79,10 @@ class NewsFeed extends Component {
       <Panel id="feed" >
         <PanelHeader>Новости</PanelHeader>
         <Search value={this.state.search} onChange={this.onChange} />
-        {!this.state.loaded ? <div className="spinner">
-          <Spinner size="large" />
-        </div> :
-          <div>
-            <Carousel list={this.state.banners}
-              autoplay={true}
-              sizePadding={52.63} />
-            <div className="posts">{posts}</div>
-          </div>
-        }
+        <Carousel list={this.props.banners}
+          autoplay={true}
+          sizePadding={52.63} />
+        <div className="posts">{posts}</div>
       </Panel>
     );
   }

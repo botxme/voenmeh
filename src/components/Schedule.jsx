@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Panel, PanelHeader, Separator, PanelSpinner, ScreenSpinner, Spinner } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Separator } from '@vkontakte/vkui';
 import '../css/schedule.css';
 import DatePickerComponent from './DatePickerComponent.jsx';
-
-import API from '../helpers/API.js';
 
 class Schedule extends Component {
   constructor(props) {
@@ -14,16 +12,6 @@ class Schedule extends Component {
       schedule: JSON.parse(localStorage.getItem('shed'))
     };
     this.pickDate = this.pickDate.bind(this);
-  }
-
-  componentDidMount() {
-    API.request(`getVersion`, null, null, 1).then(res => {
-      console.log('Версия расписания:', res)
-      this.setState({ loaded: true })
-    }).catch(e => {
-      console.error(e)
-      this.setState({ loaded: true })
-    })
   }
 
   pickDate(d) {
@@ -93,18 +81,12 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
-        {!this.state.loaded ? <div className="spinner">
-          <Spinner size="large" />
-        </div> :
-          <div>
-            <div className="lessons_date">
-              <DatePickerComponent variable={this} />
-            </div>
-            <div className="lessons">
-              {lessons}
-            </div>
-          </div>
-        }
+        <div className="lessons_date">
+          <DatePickerComponent variable={this} />
+        </div>
+        <div className="lessons">
+          {lessons}
+        </div>
       </Panel>
     );
   }
