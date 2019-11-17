@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import connect from '@vkontakte/vk-connect';
-import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader, FormLayout, FormLayoutGroup, Avatar, Select, Div, Button, IS_PLATFORM_ANDROID, Spinner } from '@vkontakte/vkui';
+import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader, FormLayout, FormLayoutGroup, Avatar, Select, Div, Button, IS_PLATFORM_ANDROID, Spinner, Root } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import '../css/main.css';
@@ -45,9 +45,10 @@ class App extends Component {
       data: '',
       classTab: '',
       height: 0,
-      banners: [],
       loaded: false,
-      News: []
+      news: [],
+      banners: [],
+      schedule: {}
     };
 
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -72,22 +73,32 @@ class App extends Component {
     this.setState({ data: value });
   };
 
-  API(interval) {
+  pool(interval) {
     return setInterval(() => {
-      API.request(`getNews`, null, "GET", 1).then(news => {
-        API.request(`getBanners`, null, "GET", 1).then(banners => {
-          this.setState({ News: news })
-          this.setState({ banners: banners })
-          this.setState({ loaded: true })
-        }).catch(e => {
-          console.error(e)
-          this.setState({ loaded: true })
-        })
-      }).catch(e => {
-        console.error(e)
-        this.setState({ loaded: true })
-      })
-    }, interval);
+      localStorage.getItem('group') ? this.API_call('getSchedule/' + JSON.parse(localStorage.getItem('group')).id) : null;
+      this.API_call('getNews');
+    }, interval * 1000);
+  }
+
+  API_call(method) {
+    let name;
+    switch (method) {
+      case 'getBanners':
+        name = 'banners';
+        break;
+      case 'getNews':
+        name = 'news';
+        break;
+      default:
+        name = 'schedule';
+        break;
+    }
+
+    API.request(method, null, "GET", 1).then(value => {
+      this.setState({ [name]: value });
+    }).catch(e => {
+      console.error(e);
+    })
   }
 
   componentDidMount() {
@@ -103,7 +114,21 @@ class App extends Component {
       this.setState({ history: his, activePanel: active });
     }, false);
 
-    this.API(3000)
+    API.request('getBanners', null, "GET", 1).then(banners => {
+      this.setState({ banners });
+      API.request('getNews', null, "GET", 1).then(news => {
+        this.setState({ news });
+        this.setState({ loaded: true })
+      }).catch(e => {
+        console.error(e);
+        this.setState({ loaded: true })
+      })
+    }).catch(e => {
+      console.error(e);
+      this.setState({ loaded: true })
+    })
+
+    this.pool(180)
   }
 
   goBack() {
@@ -161,7 +186,7 @@ class App extends Component {
             history={this.state.history}
             onSwipeBack={this.goBack} // для свайпа на iOS
           >
-            <NewsFeed id="feed" variable={this} updateData={this} banners={this.state.banners} News={this.state.News} />
+            <NewsFeed id="feed" variable={this} updateData={this} banners={this.state.banners} News={this.state.news} />
             <Page id="page" variable={this} data={this.state.data} />
           </View>
 
@@ -169,7 +194,7 @@ class App extends Component {
             <Deadlines id="time" />
           </View>
 
-          <View id="schedule" activePanel="schedule">
+          <View id="schedule" activePanel="schedule" schedule={this.state.schedule}>
             <Schedule id="schedule" />
           </View>
 

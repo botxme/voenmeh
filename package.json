@@ -4,7 +4,8 @@
   "description": "Сервис ВКонтакте",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --hot",
+    "dev": "npm run env NODE_ENV=development && npm run build_dev",
+    "build_dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

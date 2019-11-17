@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Panel, PanelHeader, Separator } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Separator, Spinner } from '@vkontakte/vkui';
 import '../css/schedule.css';
 import DatePickerComponent from './DatePickerComponent.jsx';
+import API from '../helpers/API.js';
 
 class Schedule extends Component {
   constructor(props) {
@@ -9,9 +10,20 @@ class Schedule extends Component {
     this.state = {
       loaded: false,
       lessons: [],
-      schedule: JSON.parse(localStorage.getItem('shed'))
+      schedule: {}
     };
     this.pickDate = this.pickDate.bind(this);
+  }
+
+  //this.props.schedule ? this.props.schedule : this.state.tempShed
+  componentDidMount() {
+    return API.request('getSchedule/' + JSON.parse(localStorage.getItem('group')).id, null, "GET", 1).then(schedule => {
+      this.setState({ schedule });
+      this.setState({ loaded: true });
+    }).catch(e => {
+      this.setState({ loaded: true });
+      console.error(e);
+    })
   }
 
   pickDate(d) {
@@ -81,12 +93,19 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
-        <div className="lessons_date">
-          <DatePickerComponent variable={this} />
-        </div>
-        <div className="lessons">
-          {lessons}
-        </div>
+        {
+          !this.state.loaded ? <div className="spinner">
+            <Spinner size="large" />
+          </div> :
+            <div>
+              <div className="lessons_date">
+                <DatePickerComponent variable={this} />
+              </div>
+              <div className="lessons">
+                {lessons}
+              </div>
+            </div>
+        }
       </Panel>
     );
   }

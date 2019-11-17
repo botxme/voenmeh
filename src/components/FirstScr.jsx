@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import { Div, Button, Panel, PanelHeader, FormLayout, Avatar, Select, FormLayoutGroup } from '@vkontakte/vkui';
+import { Button, Panel, FormLayout, Select } from '@vkontakte/vkui';
 import '../css/first.css';
-import constants from './constants';
+import API from '../helpers/API.js';
 
 class FirstScr extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      groupsList: []
+    };
     this.onChange = this.onChange.bind(this);
-    this.initLocal = this.initLocal.bind(this);
+  }
+
+  componentDidMount() {
+    API.request('getGroups', null, "GET", 1).then(value => {
+      this.setState({ groupsList: value });
+    }).catch(e => {
+      console.error(e);
+    })
   }
 
   onChange(e) {
@@ -21,18 +30,8 @@ class FirstScr extends Component {
     }
   }
 
-  initLocal(fac, group) {
-    // запись расписания в localstorage для определенной группы
-    switch (fac || localStorage.getItem('faculty')) {
-      case '«И»':
-        return localStorage.setItem('shed', JSON.stringify(require('./formatGroupI.json')[JSON.parse(group).id]));
-      default:
-        return null
-    }
-  }
-
   render() {
-    const faculties = constants.api.map((fac, id) => (
+    const faculties = this.state.groupsList.map((fac, id) => (
       <option value={JSON.stringify(fac)} key={id}>{fac.faculty}</option>
     ))
 
@@ -72,7 +71,6 @@ class FirstScr extends Component {
           <div className="button_next_first">
             <Button
               onClick={() => {
-                this.initLocal(JSON.parse(this.state.faculty).faculty, this.state.group);
                 localStorage.setItem('group', this.state.group);
                 localStorage.setItem('faculty', JSON.parse(this.state.faculty).faculty);
                 this.props.variable.changePage('schedule');

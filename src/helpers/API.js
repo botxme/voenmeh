@@ -5,7 +5,7 @@ export default class API {
 		let url = (process.env.NODE_ENV=="development"?'http://localhost:3030/api/':'https://bgtu.now.sh/api/') + method;
 
 		let requestParams = {
-			'method': httpMethod ? httpMethod : "GET",
+			'method': httpMethod,
 			'cache': 'no-cache',
 			'redirect': 'error',
 			'headers': {
