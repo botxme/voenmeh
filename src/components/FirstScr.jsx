@@ -28,6 +28,8 @@ class FirstScr extends Component {
     } else {
       this.setState({ [name]: false });
     }
+
+    if (name == 'group') this.props.variable.setSchedule(value);
   }
 
   render() {

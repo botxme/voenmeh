@@ -34,6 +34,10 @@ import phone6 from './onboardingPanels/phone6.png';
 // Sends event to client
 connect.send('VKWebAppInit');
 
+if (connect.supports("VKWebAppResizeWindow")) {
+  connect.send("VKWebAppResizeWindow", { "width": 800, "height": 1000 });
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +60,7 @@ class App extends Component {
 
 
   updateDimensions() {
-    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < this.state.height)) ? 'tabbarDisable' : '' })
+    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < this.state.height)) ? 'tabbarDisable' : '' });
   }
 
   changePage(name) {
@@ -78,6 +82,14 @@ class App extends Component {
       localStorage.getItem('group') ? this.API_call('getSchedule/' + JSON.parse(localStorage.getItem('group')).id) : null;
       this.API_call('getNews');
     }, interval * 1000);
+  }
+
+  setSchedule(group = localStorage.getItem('group')) {
+    API.request('getSchedule/' + JSON.parse(group).id, null, "GET", 1).then(schedule => {
+      this.setState({ schedule });
+    }).catch(e => {
+      console.error(e);
+    })
   }
 
   API_call(method) {
@@ -113,6 +125,8 @@ class App extends Component {
       }
       this.setState({ history: his, activePanel: active });
     }, false);
+
+    if (localStorage.getItem('group')) this.setSchedule();
 
     API.request('getBanners', null, "GET", 1).then(banners => {
       this.setState({ banners });
@@ -194,8 +208,8 @@ class App extends Component {
             <Deadlines id="time" />
           </View>
 
-          <View id="schedule" activePanel="schedule" schedule={this.state.schedule}>
-            <Schedule id="schedule" />
+          <View id="schedule" activePanel="schedule">
+            <Schedule id="schedule" schedule={this.state.schedule} />
           </View>
 
           <View id="archive" activePanel="archive">

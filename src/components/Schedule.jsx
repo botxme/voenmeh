@@ -8,25 +8,15 @@ class Schedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
+      loaded: true,
       lessons: [],
-      schedule: {}
+      schedule: this.props.schedule
     };
     this.pickDate = this.pickDate.bind(this);
   }
 
-  //this.props.schedule ? this.props.schedule : this.state.tempShed
-  componentDidMount() {
-    return API.request('getSchedule/' + JSON.parse(localStorage.getItem('group')).id, null, "GET", 1).then(schedule => {
-      this.setState({ schedule });
-      this.setState({ loaded: true });
-    }).catch(e => {
-      this.setState({ loaded: true });
-      console.error(e);
-    })
-  }
-
   pickDate(d) {
+    if (!this.state.schedule) this.setState({ loaded: false })
     const { odd, even } = this.state.schedule;
 
     let weekDay = d.weekday();
