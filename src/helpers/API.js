@@ -1,8 +1,8 @@
 export default class API {
 
 	static __call(method, params, httpMethod = "GET") {
-		
-		let url = (process.env.NODE_ENV=="development"?'http://localhost:3030/api/':'https://bgtu.now.sh/api/') + method;
+		//let url = (process.env.NODE_ENV=="development"?'http://localhost:3030/api/':'https://bgtu.now.sh/api/') + method;
+		let url = 'https://bgtu.now.sh/api/' + method;
 
 		let requestParams = {
 			'method': httpMethod,
@@ -63,13 +63,13 @@ export default class API {
 								}, Math.random() * 1000)
 							} else {
 								throw new ConnectionError(
-									httpMethod
-									+ " "
-									+ method
-									+ " response "
-									+ r.status
-									+ " Content-Type: "
-									+ contentType
+									httpMethod +
+									" " +
+									method +
+									" response " +
+									r.status +
+									" Content-Type: " +
+									contentType
 								)
 							}
 						}
@@ -99,28 +99,34 @@ export default class API {
 		})
 	}
 
-    static stringify(object, asRaw = false, prefix = false) {
-        let arr = []
-        for (let key in object) {
-            if (object.hasOwnProperty(key)) {
-                let value = object[key]
-                if (value === undefined) {
-                    continue
-                }
-                if (typeof value.forEach === 'function') {
-                    value.forEach(i => arr.push({k: (prefix ? prefix + '[' + key + ']' : key) + '[]', v: i}))
-                } else if (typeof value === 'object') {
-                    let resolve = API.stringify(value, true, (prefix ? prefix + '[' + key + ']' : key))
-                    resolve.forEach(i => arr.push(i))
-                } else {
-                    arr.push({k: (prefix ? prefix + '[' + key + ']' : key), v: value})
-                }
-            }
-        }
-        if (asRaw) {
-            return arr
-        } else {
-            return arr.map(e => e.k + '=' + encodeURIComponent(e.v)).join("&")
-        }
-    }
+	static stringify(object, asRaw = false, prefix = false) {
+		let arr = []
+		for (let key in object) {
+			if (object.hasOwnProperty(key)) {
+				let value = object[key]
+				if (value === undefined) {
+					continue
+				}
+				if (typeof value.forEach === 'function') {
+					value.forEach(i => arr.push({
+						k: (prefix ? prefix + '[' + key + ']' : key) + '[]',
+						v: i
+					}))
+				} else if (typeof value === 'object') {
+					let resolve = API.stringify(value, true, (prefix ? prefix + '[' + key + ']' : key))
+					resolve.forEach(i => arr.push(i))
+				} else {
+					arr.push({
+						k: (prefix ? prefix + '[' + key + ']' : key),
+						v: value
+					})
+				}
+			}
+		}
+		if (asRaw) {
+			return arr
+		} else {
+			return arr.map(e => e.k + '=' + encodeURIComponent(e.v)).join("&")
+		}
+	}
 }

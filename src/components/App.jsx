@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import connect from '@vkontakte/vk-connect';
-import { Epic, Tabbar, TabbarItem, View, Panel, PanelHeader, FormLayout, FormLayoutGroup, Avatar, Select, Div, Button, IS_PLATFORM_ANDROID, Spinner, Root } from '@vkontakte/vkui';
+import { Epic, Tabbar, TabbarItem, View, IS_PLATFORM_ANDROID, Spinner } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import '../css/main.css';
@@ -49,7 +49,7 @@ class App extends Component {
       data: '',
       classTab: '',
       height: 0,
-      loaded: false,
+      isLoaded: false,
       news: [],
       banners: [],
       schedule: {}
@@ -132,14 +132,14 @@ class App extends Component {
       this.setState({ banners });
       API.request('getNews', null, "GET", 1).then(news => {
         this.setState({ news });
-        this.setState({ loaded: true })
+        this.setState({ isLoaded: true })
       }).catch(e => {
         console.error(e);
-        this.setState({ loaded: true })
+        this.setState({ isLoaded: true })
       })
     }).catch(e => {
       console.error(e);
-      this.setState({ loaded: true })
+      this.setState({ isLoaded: true })
     })
 
     this.pool(180)
@@ -191,55 +191,65 @@ class App extends Component {
       </Tabbar>
     );
 
+
+    const { isLoaded, banners, news, schedule, activePage, activePanel, history, data } = this.state;
+
+    if (localStorage.getItem('group')) {
+      // быстрый старт, расписание
+      if (!(isLoaded && "GroupName" in schedule)) return <Spinner size="large" />;
+    } else {
+      //холодный, онбординг
+      if (!isLoaded) return <Spinner size="large" />;
+    }
+
     return (
-      !this.state.loaded ? <Spinner size="large" /> :
-        <Epic activeStory={this.state.activePage} tabbar={(this.state.activePage === "first" || this.state.activePage === "onbording") ? null : tabbar}>
-          <View
-            id="feed"
-            activePanel={this.state.activePanel}
-            history={this.state.history}
-            onSwipeBack={this.goBack} // для свайпа на iOS
-          >
-            <NewsFeed id="feed" variable={this} updateData={this} banners={this.state.banners} News={this.state.news} />
-            <Page id="page" variable={this} data={this.state.data} />
-          </View>
+      <Epic activeStory={activePage} tabbar={(activePage === "first" || activePage === "onbording") ? null : tabbar}>
+        <View
+          id="feed"
+          activePanel={activePanel}
+          history={history}
+          onSwipeBack={this.goBack} // для свайпа на iOS
+        >
+          <NewsFeed id="feed" variable={this} updateData={this} banners={banners} News={news} />
+          <Page id="page" variable={this} data={data} />
+        </View>
 
-          <View id="time" activePanel="time">
-            <Deadlines id="time" />
-          </View>
+        <View id="time" activePanel="time">
+          <Deadlines id="time" />
+        </View>
 
-          <View id="schedule" activePanel="schedule">
-            <Schedule id="schedule" schedule={this.state.schedule} />
-          </View>
+        <View id="schedule" activePanel="schedule">
+          <Schedule id="schedule" schedule={schedule} />
+        </View>
 
-          <View id="archive" activePanel="archive">
-            <Archive id="archive" />
-          </View>
+        <View id="archive" activePanel="archive">
+          <Archive id="archive" />
+        </View>
 
-          <View id="profile" activePanel="profile">
-            <Profile id="profile" />
-          </View>
+        <View id="profile" activePanel="profile">
+          <Profile id="profile" />
+        </View>
 
-          <View id="first" activePanel="first">
-            <FirstScr id="first" variable={this} />
-          </View>
+        <View id="first" activePanel="first">
+          <FirstScr id="first" variable={this} />
+        </View>
 
-          <View id="onbording" activePanel="onbording">
-            <Onboarding
-              variable={this}
-              id="onbording"
-              pages={[
-                { image: phone0, title: `Встречайте —\nВоенмех ВКонтакте`, subtitle: 'Первый локальный студенческий сервис\nвнутри социальной сети.\nНе нужно ничего скачивать и устанавливать —\nэто чудесно, не правда ли?' },
-                { image: phone1, title: 'Следи за новостями!', subtitle: 'В этом разделе у нас царит гармония и порядок:\nвсе новости отсортированы по факультетам,\nпоэтому ты не пропустишь ничего важного.' },
-                { image: phone2, title: 'Создавай дедлайны!', subtitle: 'Укажи название задачи, комментарий и время.\nКогда сроки начнут гореть —\nсервис пришлет уведомление ВКонтакте.' },
-                { image: phone3, title: 'Смотри расписание!', subtitle: 'Свайпни календарь и выбери дату,\nчтобы посмотреть расписание на другой день.' },
-                { image: phone4, title: 'Самое важное в архиве!', subtitle: 'Здесь размещена полезная информация\nдля каждого студента Военмеха.\nНе отвлекай никого — посмотри в архиве.' },
-                { image: phone5, title: 'Настрой сервис под себя!', subtitle: 'По умолчанию включены все виды уведомлений\nи сортировка новостной ленты по факультетам.' },
-                { image: phone6, title: 'Почти готово!', subtitle: 'Осталось дело за малым:\nдобавь сервис в избранное и разреши\nприсылать уведомления, чтобы наслаждаться\nфункционалом сервиса в полной мере.' },
-              ]}
-            />
-          </View>
-        </Epic >
+        <View id="onbording" activePanel="onbording">
+          <Onboarding
+            variable={this}
+            id="onbording"
+            pages={[
+              { image: phone0, title: `Встречайте —\nВоенмех ВКонтакте`, subtitle: 'Первый локальный студенческий сервис\nвнутри социальной сети.\nНе нужно ничего скачивать и устанавливать —\nэто чудесно, не правда ли?' },
+              { image: phone1, title: 'Следи за новостями!', subtitle: 'В этом разделе у нас царит гармония и порядок:\nвсе новости отсортированы по факультетам,\nпоэтому ты не пропустишь ничего важного.' },
+              { image: phone2, title: 'Создавай дедлайны!', subtitle: 'Укажи название задачи, комментарий и время.\nКогда сроки начнут гореть —\nсервис пришлет уведомление ВКонтакте.' },
+              { image: phone3, title: 'Смотри расписание!', subtitle: 'Свайпни календарь и выбери дату,\nчтобы посмотреть расписание на другой день.' },
+              { image: phone4, title: 'Самое важное в архиве!', subtitle: 'Здесь размещена полезная информация\nдля каждого студента Военмеха.\nНе отвлекай никого — посмотри в архиве.' },
+              { image: phone5, title: 'Настрой сервис под себя!', subtitle: 'По умолчанию включены все виды уведомлений\nи сортировка новостной ленты по факультетам.' },
+              { image: phone6, title: 'Почти готово!', subtitle: 'Осталось дело за малым:\nдобавь сервис в избранное и разреши\nприсылать уведомления, чтобы наслаждаться\nфункционалом сервиса в полной мере.' },
+            ]}
+          />
+        </View>
+      </Epic >
     );
   }
 }

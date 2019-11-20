@@ -10,13 +10,13 @@ class Schedule extends Component {
     this.state = {
       loaded: true,
       lessons: [],
-      schedule: this.props.schedule
+      schedule: this.props.schedule,
+      error: null
     };
     this.pickDate = this.pickDate.bind(this);
   }
 
   pickDate(d) {
-    if (!this.state.schedule) this.setState({ loaded: false })
     const { odd, even } = this.state.schedule;
 
     let weekDay = d.weekday();
@@ -83,19 +83,12 @@ class Schedule extends Component {
     return (
       <Panel id="schedule">
         <PanelHeader>Расписание</PanelHeader>
-        {
-          !this.state.loaded ? <div className="spinner">
-            <Spinner size="large" />
-          </div> :
-            <div>
-              <div className="lessons_date">
-                <DatePickerComponent variable={this} />
-              </div>
-              <div className="lessons">
-                {lessons}
-              </div>
-            </div>
-        }
+        <div className="lessons_date">
+          <DatePickerComponent variable={this} />
+        </div>
+        <div className="lessons">
+          {lessons}
+        </div>
       </Panel>
     );
   }

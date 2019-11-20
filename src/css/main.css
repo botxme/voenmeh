@@ -45,9 +45,9 @@
   font-family: 'TT Norms';
   src: url('../fonts/TTNorms-Bold.eot');
   src: local('TT Norms Bold'), local('TTNorms-Bold'),
-      url('../fonts/TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/TTNorms-Bold.woff') format('woff'),
-      url('../fonts/TTNorms-Bold.ttf') format('truetype');
+    url('../fonts/TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TTNorms-Bold.woff') format('woff'),
+    url('../fonts/TTNorms-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -56,9 +56,9 @@
   font-family: 'TT Norms';
   src: url('../fonts/TTNorms-Thin.eot');
   src: local('TT Norms Thin'), local('TTNorms-Thin'),
-      url('../fonts/TTNorms-Thin.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/TTNorms-Thin.woff') format('woff'),
-      url('../fonts/TTNorms-Thin.ttf') format('truetype');
+    url('../fonts/TTNorms-Thin.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TTNorms-Thin.woff') format('woff'),
+    url('../fonts/TTNorms-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
@@ -67,9 +67,9 @@
   font-family: 'TT Norms';
   src: url('../fonts/TTNorms-Regular.eot');
   src: local('TT Norms Regular'), local('TTNorms-Regular'),
-      url('../fonts/TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/TTNorms-Regular.woff') format('woff'),
-      url('../fonts/TTNorms-Regular.ttf') format('truetype');
+    url('../fonts/TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TTNorms-Regular.woff') format('woff'),
+    url('../fonts/TTNorms-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -78,9 +78,9 @@
   font-family: 'TT Norms';
   src: url('../fonts/TTNorms-Light.eot');
   src: local('TT Norms Light'), local('TTNorms-Light'),
-      url('../fonts/TTNorms-Light.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/TTNorms-Light.woff') format('woff'),
-      url('../fonts/TTNorms-Light.ttf') format('truetype');
+    url('../fonts/TTNorms-Light.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TTNorms-Light.woff') format('woff'),
+    url('../fonts/TTNorms-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
@@ -89,9 +89,9 @@
   font-family: 'TT Norms';
   src: url('../fonts/TTNorms-ExtraLight.eot');
   src: local('TT Norms ExtraLight'), local('TTNorms-ExtraLight'),
-      url('../fonts/TTNorms-ExtraLight.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/TTNorms-ExtraLight.woff') format('woff'),
-      url('../fonts/TTNorms-ExtraLight.ttf') format('truetype');
+    url('../fonts/TTNorms-ExtraLight.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TTNorms-ExtraLight.woff') format('woff'),
+    url('../fonts/TTNorms-ExtraLight.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
 }
@@ -100,9 +100,9 @@
   font-family: 'TT Norms';
   src: url('../fonts/TTNorms-Medium.eot');
   src: local('TT Norms Medium'), local('TTNorms-Medium'),
-      url('../fonts/TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/TTNorms-Medium.woff') format('woff'),
-      url('../fonts/TTNorms-Medium.ttf') format('truetype');
+    url('../fonts/TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TTNorms-Medium.woff') format('woff'),
+    url('../fonts/TTNorms-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
@@ -143,4 +143,26 @@ Spinner {
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+@media (device-height : 568px) and (device-width : 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  .post_date {
+    font-size: 14px !important;
+  }
+
+  .post_author {
+    font-size: 15px !important;
+  }
+
+  .onboarding>.title {
+    font-size: 22px !important;
+  }
+
+  .onboarding>.subtitle {
+    font-size: 14px !important;
+  }
+
+  .onboarding {
+    height: 80vh !important;
+  }
 }
