@@ -21,5 +21,11 @@ module.exports = {
     'react',
   ],
   rules: {
+    'linebreak-style': ['error', 'windows'],
+    'no-console': ['error', {
+      allow: ['error']
+    }],
+    'import/extensions': ['error', 'ignorePackages'],
+    'comma-dangle': ['error', 'only-multiline']
   },
 };

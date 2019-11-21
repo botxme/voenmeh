@@ -1,6 +1,13 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-lonely-if */
+/* eslint-disable class-methods-use-this */
+
 import React, { Component } from 'react';
 import connect from '@vkontakte/vk-connect';
-import { Epic, Tabbar, TabbarItem, View, IS_PLATFORM_ANDROID, Spinner } from '@vkontakte/vkui';
+import {
+  Epic, Tabbar, TabbarItem, View, IS_PLATFORM_ANDROID, Spinner
+} from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import '../css/main.css';
@@ -34,8 +41,8 @@ import phone6 from './onboardingPanels/phone6.png';
 // Sends event to client
 connect.send('VKWebAppInit');
 
-if (connect.supports("VKWebAppResizeWindow")) {
-  connect.send("VKWebAppResizeWindow", { "width": 800, "height": 1000 });
+if (connect.supports('VKWebAppResizeWindow')) {
+  connect.send('VKWebAppResizeWindow', { width: 800, height: 1000 });
 }
 
 class App extends Component {
@@ -43,7 +50,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activePage: localStorage.group != undefined ? 'schedule' : 'onbording',
+      activePage: localStorage.group !== undefined ? 'schedule' : 'onbording',
       activePanel: 'feed',
       history: ['feed'],
       data: '',
@@ -58,9 +65,41 @@ class App extends Component {
     this.updateDimensions = this.updateDimensions.bind(this);
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+    window.addEventListener('popstate', () => {
+      const his = [...this.state.history];
+      his.pop();
+      const active = his[his.length - 1];
+      if (active === 'feed') {
+        connect.send('VKWebAppDisableSwipeBack');
+      }
+      this.setState({ history: his, activePanel: active });
+    }, false);
 
-  updateDimensions() {
-    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < this.state.height)) ? 'tabbarDisable' : '' });
+    if (localStorage.getItem('group')) this.setSchedule();
+
+    API.request('getBanners', null, 'GET', 1).then((banners) => {
+      this.setState({ banners });
+      API.request('getNews', null, 'GET', 1).then((news) => {
+        this.setState({ news });
+        this.setState({ isLoaded: true });
+      }).catch((e) => {
+        console.error(e);
+        this.setState({ isLoaded: true });
+      });
+    }).catch((e) => {
+      console.error(e);
+      this.setState({ isLoaded: true });
+    });
+
+    this.pool(180);
+  }
+
+  setSchedule(group = localStorage.getItem('group')) {
+    API.request(`getSchedule/${JSON.parse(group).id}`, null, 'GET', 1).then((schedule) => {
+      this.setState({ schedule });
+    }).catch(console.error);
   }
 
   changePage(name) {
@@ -75,24 +114,21 @@ class App extends Component {
 
   updateData(value) {
     this.setState({ data: value });
-  };
+  }
 
   pool(interval) {
     return setInterval(() => {
-      localStorage.getItem('group') ? this.API_call('getSchedule/' + JSON.parse(localStorage.getItem('group')).id) : null;
-      this.API_call('getNews');
+      if (localStorage.getItem('group')) this.apiCall(`getSchedule/${JSON.parse(localStorage.getItem('group')).id}`);
+      this.apiCall('getNews');
     }, interval * 1000);
   }
 
-  setSchedule(group = localStorage.getItem('group')) {
-    API.request('getSchedule/' + JSON.parse(group).id, null, "GET", 1).then(schedule => {
-      this.setState({ schedule });
-    }).catch(e => {
-      console.error(e);
-    })
+  updateDimensions() {
+    const { height } = this.state;
+    this.setState({ classTab: (IS_PLATFORM_ANDROID && (window.innerHeight < height)) ? 'tabbarDisable' : '' });
   }
 
-  API_call(method) {
+  apiCall(method) {
     let name;
     switch (method) {
       case 'getBanners':
@@ -106,43 +142,9 @@ class App extends Component {
         break;
     }
 
-    API.request(method, null, "GET", 1).then(value => {
+    API.request(method, null, 'GET', 1).then((value) => {
       this.setState({ [name]: value });
-    }).catch(e => {
-      console.error(e);
-    })
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions);
-    window.addEventListener('popstate', (event) => {
-      console.log("назад")
-      const his = [...this.state.history];
-      his.pop();
-      const active = his[his.length - 1];
-      if (active === 'feed') {
-        connect.send('VKWebAppDisableSwipeBack');
-      }
-      this.setState({ history: his, activePanel: active });
-    }, false);
-
-    if (localStorage.getItem('group')) this.setSchedule();
-
-    API.request('getBanners', null, "GET", 1).then(banners => {
-      this.setState({ banners });
-      API.request('getNews', null, "GET", 1).then(news => {
-        this.setState({ news });
-        this.setState({ isLoaded: true })
-      }).catch(e => {
-        console.error(e);
-        this.setState({ isLoaded: true })
-      })
-    }).catch(e => {
-      console.error(e);
-      this.setState({ isLoaded: true })
-    })
-
-    this.pool(180)
+    }).catch(console.error);
   }
 
   goBack() {
@@ -153,57 +155,69 @@ class App extends Component {
   goForward(activePanel) {
     const history = [...this.state.history];
     history.push(activePanel);
+    // eslint-disable-next-line react/destructuring-assignment
     if (this.state.activePanel === 'feed') {
       connect.send('VKWebAppEnableSwipeBack');
     }
-    window.history.pushState({}, '', activePanel)
+    window.history.pushState({}, '', activePanel);
 
     this.setState({ history, activePanel });
   }
 
   render() {
+    const {
+      isLoaded, banners, news, schedule, activePage, activePanel, history, data, classTab
+    } = this.state;
+
     const tabbar = (
-      <Tabbar className={this.state.classTab}>
+      <Tabbar className={classTab}>
         <TabbarItem
           onClick={() => this.changePage('feed')}
-          selected={this.state.activePage == 'feed'}
-        ><Icon28ArticleOutline /></TabbarItem>
+          selected={activePage === 'feed'}
+        >
+          <Icon28ArticleOutline />
+        </TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('time')}
-          selected={this.state.activePage == 'time'}
-        ><Icon28FireOutline /></TabbarItem>
+          selected={activePage === 'time'}
+        >
+          <Icon28FireOutline />
+        </TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('schedule')}
-          selected={this.state.activePage == 'schedule'}
-        ><Icon20CalendarOutline width={28} height={28} /></TabbarItem>
+          selected={activePage === 'schedule'}
+        >
+          <Icon20CalendarOutline width={28} height={28} />
+        </TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('archive')}
-          selected={this.state.activePage == 'archive'}
-        ><Icon28ArchiveOutline /></TabbarItem>
+          selected={activePage === 'archive'}
+        >
+          <Icon28ArchiveOutline />
+        </TabbarItem>
 
         <TabbarItem
           onClick={() => this.changePage('profile')}
-          selected={this.state.activePage == 'profile'}
-        ><Icon28Profile /></TabbarItem>
+          selected={activePage === 'profile'}
+        >
+          <Icon28Profile />
+        </TabbarItem>
       </Tabbar>
     );
 
-
-    const { isLoaded, banners, news, schedule, activePage, activePanel, history, data } = this.state;
-
     if (localStorage.getItem('group')) {
-      // быстрый старт, расписание
-      if (!(isLoaded && "GroupName" in schedule)) return <Spinner size="large" />;
+      // расписание
+      if (!(isLoaded && 'GroupName' in schedule)) return <Spinner size="large" />;
     } else {
-      //холодный, онбординг
+      // онбординг
       if (!isLoaded) return <Spinner size="large" />;
     }
 
     return (
-      <Epic activeStory={activePage} tabbar={(activePage === "first" || activePage === "onbording") ? null : tabbar}>
+      <Epic activeStory={activePage} tabbar={(activePage === 'first' || activePage === 'onbording') ? null : tabbar}>
         <View
           id="feed"
           activePanel={activePanel}
@@ -239,7 +253,7 @@ class App extends Component {
             variable={this}
             id="onbording"
             pages={[
-              { image: phone0, title: `Встречайте —\nВоенмех ВКонтакте`, subtitle: 'Первый локальный студенческий сервис\nвнутри социальной сети.\nНе нужно ничего скачивать и устанавливать —\nэто чудесно, не правда ли?' },
+              { image: phone0, title: 'Встречайте —\nВоенмех ВКонтакте', subtitle: 'Первый локальный студенческий сервис\nвнутри социальной сети.\nНе нужно ничего скачивать и устанавливать —\nэто чудесно, не правда ли?' },
               { image: phone1, title: 'Следи за новостями!', subtitle: 'В этом разделе у нас царит гармония и порядок:\nвсе новости отсортированы по факультетам,\nпоэтому ты не пропустишь ничего важного.' },
               { image: phone2, title: 'Создавай дедлайны!', subtitle: 'Укажи название задачи, комментарий и время.\nКогда сроки начнут гореть —\nсервис пришлет уведомление ВКонтакте.' },
               { image: phone3, title: 'Смотри расписание!', subtitle: 'Свайпни календарь и выбери дату,\nчтобы посмотреть расписание на другой день.' },
@@ -249,7 +263,7 @@ class App extends Component {
             ]}
           />
         </View>
-      </Epic >
+      </Epic>
     );
   }
 }
