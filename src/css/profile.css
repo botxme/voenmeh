@@ -1,0 +1,45 @@
+#profile {
+  padding: 0px 20px;
+}
+
+.profile_title {
+  font-size: 20px;
+  font-family: "TT Norms";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  padding: 25px 0;
+}
+
+.profile_item {
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.profile_links_text {
+  padding-left: 15px;
+}
+
+.profile_links_title {
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-family: "TT Norms";
+  color: rgb(255, 255, 255);
+}
+
+.profile_links_sub {
+  font-size: 14px;
+  font-family: "TT Norms";
+  color: rgb(118, 119, 120);
+}
+
+
+.profile_links_img {
+  height: 38px;
+  width: 8%;
+  background-size: 100%;
+  background-position-y: center;
+  background-position-x: left;
+  background-repeat: no-repeat;
+}
