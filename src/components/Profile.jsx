@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { View, Panel, PanelHeader, Select, FormLayout, Div, Link } from '@vkontakte/vkui';
-import connect from '@vkontakte/vk-connect';
+import {
+  Panel, PanelHeader, Link
+} from '@vkontakte/vkui';
 import '../css/profile.css';
+
+import imageVKLogo from '../images/vk_logo.png';
+import imageGlobe from '../images/globe.png';
 
 class Profile extends Component {
   constructor(props) {
@@ -17,7 +21,6 @@ class Profile extends Component {
   }
 
   render() {
-
     return (
       <Panel id="profile">
         <PanelHeader>Профиль</PanelHeader>
@@ -26,7 +29,7 @@ class Profile extends Component {
           <div className="profile_links">
             <Link href="https://vk.com/voenmeh_app" target="_blank">
               <div className="profile_item">
-                <div className="profile_links_img" style={{ backgroundImage: `url(${require('../images/vk_logo.png')})` }} />
+                <div className="profile_links_img" style={{ backgroundImage: `url(${imageVKLogo})` }} />
                 <div className="profile_links_text">
                   <div className="profile_links_title">voenmeh_app</div>
                   <div className="profile_links_sub">Сообщество сервиса</div>
@@ -36,7 +39,7 @@ class Profile extends Component {
 
             <Link href="https://vk.com/krethub" target="_blank">
               <div className="profile_item">
-                <div className="profile_links_img" style={{ backgroundImage: `url(${require('../images/vk_logo.png')})` }} />
+                <div className="profile_links_img" style={{ backgroundImage: `url(${imageVKLogo})` }} />
                 <div className="profile_links_text">
                   <div className="profile_links_title">krethub</div>
                   <div className="profile_links_sub">Владислав Кретов</div>
@@ -44,15 +47,13 @@ class Profile extends Component {
               </div>
             </Link>
 
-          
-              <div className="profile_item">
-                <div className="profile_links_img" style={{ backgroundImage: `url(${require('../images/globe.png')})` }} />
-                <div className="profile_links_text">
-                  <div className="profile_links_title">BOT-X.me</div>
-                  <div className="profile_links_sub">Сайт разработчика</div>
-                </div>
+            <div className="profile_item">
+              <div className="profile_links_img" style={{ backgroundImage: `url(${imageGlobe})` }} />
+              <div className="profile_links_text">
+                <div className="profile_links_title">BOT-X.me</div>
+                <div className="profile_links_sub">Сайт разработчика</div>
               </div>
-
+            </div>
           </div>
         </div>
       </Panel>
