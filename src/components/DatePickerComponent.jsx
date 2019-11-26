@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
 import '../css/DatePickerComponent.css';
 
 import moment from 'moment';
 import { HorizontalScroll } from '@vkontakte/vkui';
+
 moment.locale('ru');
 
 class DatePickerComponent extends React.Component {
@@ -14,11 +17,12 @@ class DatePickerComponent extends React.Component {
     };
     this.dateSelect = this.dateSelect.bind(this);
     this.generateDates = this.generateDates.bind(this);
-    this.FirstLetUP = this.FirstLetUP.bind(this);
+    this.firstLetterUP = this.firstLetterUP.bind(this);
   }
 
   componentDidMount() {
     const { firstDate, selectedDate } = this.state;
+    const { variable } = this.props;
 
     const first = firstDate ? moment(firstDate) : moment(new Date());
     const selected = selectedDate ? moment(selectedDate) : first;
@@ -28,10 +32,10 @@ class DatePickerComponent extends React.Component {
       selectedDayIndex,
     });
 
-    this.props.variable.pickDate(selected)
+    variable.pickDate(selected);
   }
 
-  FirstLetUP(str) {
+  firstLetterUP(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
 
@@ -139,7 +143,7 @@ class DatePickerComponent extends React.Component {
           {days || null}
         </div>
       </HorizontalScroll>
-      <div style={{ textAlign: "center", fontWeight: 500 }}>{this.FirstLetUP(moment(selectedDay).format('dddd, D MMMM')) + ` (${(k != Math.floor(k)) ? 'четная' : 'нечетная'} неделя)`}</div>
+      <div style={{ textAlign: "center", fontWeight: 500 }}>{this.firstLetterUP(moment(selectedDay).format('dddd, D MMMM')) + ` (${(k != Math.floor(k)) ? 'четная' : 'нечетная'} неделя)`}</div>
     </div>
     );
   }

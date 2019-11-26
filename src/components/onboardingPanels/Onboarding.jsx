@@ -1,7 +1,16 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-return-assign */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
 import { Panel, Button } from '@vkontakte/vkui';
 
-import Slider from 'react-slick'
+import Slider from 'react-slick';
 
 import Icon24BrowserForward from '@vkontakte/icons/dist/24/browser_forward';
 
@@ -13,9 +22,9 @@ class Onboarding extends Component {
 
     this.state = {
       slideIndex: 0
-    }
+    };
 
-    this.slider = null
+    this.slider = null;
     this.next = this.next.bind(this);
   }
 
@@ -25,7 +34,7 @@ class Onboarding extends Component {
 
   render() {
     const { pages } = this.props;
-    let settings = {
+    const settings = {
       centerMode: false,
       autoplay: false,
       dots: false,
@@ -43,13 +52,14 @@ class Onboarding extends Component {
           height: (selected ? '8px' : '6px')
         }}
         onClick={() => {
-          this.slider.slickGoTo(id)
-        }} />
+          this.slider.slickGoTo(id);
+        }}
+      />
     );
 
     const PageDots = ({ pages, currentPage }) => (
       <div className="dots">
-        {Array.from(new Array(pages), (x, i) => i).map(page => (
+        {Array.from(new Array(pages), (x, i) => i).map((page) => (
           <PageDot key={page} selected={page === currentPage} id={page} />
         ))}
       </div>
@@ -57,31 +67,38 @@ class Onboarding extends Component {
 
     return (
       <Panel id="onboarding">
-        <Slider {...settings} ref={c => (this.slider = c)}>
+        <Slider {...settings} ref={(c) => (this.slider = c)}>
           {pages.map((page, key) => {
-            let { image, title, subtitle } = page;
-            let { slideIndex } = this.state;
-            return <div key={key} className="onboarding">
-              <img src={image} className="image" />
+            const { image, title, subtitle } = page;
+            const { slideIndex } = this.state;
+            return (
+              <div
+                // eslint-disable-next-line react/no-array-index-key
+                key={key}
+                className="onboarding"
+              >
+                <img src={image} className="image" />
 
-              <span className="title">{title}</span>
-              <span className="subtitle">{subtitle}</span>
+                <span className="title">{title}</span>
+                <span className="subtitle">{subtitle}</span>
 
-              <div className="button_next">
-                <Button
-                  onClick={() => {
-                    slideIndex == pages.length - 1 ? this.props.variable.changePage('first') : this.next()
-                  }}
-                  size="l"
-                  stretched
-                  className="button_Panel"
-                  style={{ margin: 0 }}>
-                  Далее <Icon24BrowserForward style={{ display: "inline-block", verticalAlign: "middle" }} width={14} height={14} />
-                </Button>
+                <div className="button_next">
+                  <Button
+                    onClick={() => {
+                      slideIndex === pages.length - 1 ? this.props.variable.changePage('first') : this.next();
+                    }}
+                    size="l"
+                    stretched
+                    className="button_Panel"
+                    style={{ margin: 0 }}
+                  >
+                    Далее
+                    <Icon24BrowserForward style={{ display: 'inline-block', verticalAlign: 'middle' }} width={14} height={14} />
+                  </Button>
+                </div>
               </div>
-            </div>
-          })
-          }
+            );
+          })}
         </Slider>
         <PageDots pages={pages.length} currentPage={this.state.slideIndex} />
       </Panel>
