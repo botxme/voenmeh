@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable class-methods-use-this */
@@ -33,7 +34,7 @@ class NewsFeed extends Component {
       return News.filter(({ tags }) => tags.join(' ').toLowerCase().indexOf(search.substr(1)) > -1);
     }
 
-    return News.filter(({ title }) => title.toLowerCase().indexOf(search) > -1);
+    return News.filter(({ title, author }) => (title + author).toLowerCase().indexOf(search) > -1);
   }
 
   firstLetterUP(str) {
@@ -59,7 +60,7 @@ class NewsFeed extends Component {
                   <div className="post_tags">
                     {post.tags.map((tag, id) => (
                       // eslint-disable-next-line react/no-array-index-key
-                      <div className="post_tag" key={id}>{this.firstLetterUP(tag)}</div>
+                      <div className="post_tag" key={id}>{`# ${tag.toLowerCase()}`}</div>
                     ))}
                   </div>
                 </div>
@@ -80,6 +81,25 @@ class NewsFeed extends Component {
         </div>
       ));
 
+    const zaglushka = (
+      <div style={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column'
+      }}
+      >
+        <span style={{
+          marginTop: '45px', fontWeight: '450', color: '#7f8285', width: '80%', textAlign: 'center'
+        }}
+        >
+Новостей по запросу
+          <br />
+не найдено!
+        </span>
+      </div>
+    );
+
 
     return (
       <Panel id="feed">
@@ -92,6 +112,7 @@ class NewsFeed extends Component {
             sizePadding={52.63}
           />
         ) : null}
+        {this.sposts.length === 0 ? zaglushka : null}
         <div className="posts">{posts}</div>
       </Panel>
     );
