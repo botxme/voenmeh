@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-lonely-if */
@@ -40,6 +41,7 @@ import phone6 from './onboardingPanels/phone6.png';
 
 // Sends event to client
 connect.send('VKWebAppInit');
+connect.send('VKWebAppSetViewSettings', { status_bar_style: 'light', action_bar_color: '#19191a' });
 
 if (connect.supports('VKWebAppResizeWindow')) {
   connect.send('VKWebAppResizeWindow', { width: 800, height: 1000 });
@@ -73,6 +75,7 @@ class App extends Component {
       const active = his[his.length - 1];
       if (active === 'feed') {
         connect.send('VKWebAppDisableSwipeBack');
+        console.log('swipeBack off');
       }
       this.setState({ history: his, activePanel: active });
     }, false);

@@ -1,12 +1,4 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable no-return-assign */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/prop-types */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable */
 import React, { Component } from 'react';
 import { Panel, Button } from '@vkontakte/vkui';
 

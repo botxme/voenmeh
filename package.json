@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run env NODE_ENV=development && npm run build_dev",
-    "build_dev": "webpack-dev-server --mode development --hot",
+    "build_dev": "webpack-dev-server --mode development --hot --disable-host-check",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -40,12 +40,10 @@
   "dependencies": {
     "@vkontakte/icons": "^1.11.2",
     "@vkontakte/vk-connect": "^1.6.8",
-    "@vkontakte/vk-connect-promise": "^0.2.0",
     "@vkontakte/vkui": "^2.32.4",
     "eruda": "^1.10.2",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-native-onboarding-screen": "^1.0.3"
+    "react-dom": "^16.11.0"
   },
   "browserslist": [
     ">0.2%",
