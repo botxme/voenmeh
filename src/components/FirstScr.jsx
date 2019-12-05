@@ -1,5 +1,10 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Button, Panel, FormLayout, Select } from '@vkontakte/vkui';
+import {
+  Button, Panel, FormLayout, Select
+} from '@vkontakte/vkui';
 import '../css/first.css';
 import API from '../helpers/API.js';
 
@@ -14,11 +19,11 @@ class FirstScr extends Component {
   }
 
   componentDidMount() {
-    API.request('getGroups', null, "GET", 1).then(value => {
+    API.request('getGroups', null, 'GET', 1).then((value) => {
       this.setState({ groupsList: value });
-    }).catch(e => {
+    }).catch((e) => {
       console.error(e);
-    })
+    });
   }
 
   onChange(e) {
@@ -29,25 +34,33 @@ class FirstScr extends Component {
       this.setState({ [name]: false });
     }
 
-    if (name == 'group') this.props.variable.setSchedule(value);
+    if (name === 'group') this.props.variable.setSchedule(value);
   }
 
   render() {
-    const faculties = this.state.groupsList.map((fac, id) => (
-      <option value={JSON.stringify(fac)} key={id}>{fac.faculty}</option>
-    ))
+    const faculties = this.state.groupsList.map((fac) => (
+      <option value={JSON.stringify(fac)} key={fac.faculty}>{fac.faculty}</option>
+    ));
 
-    const groups = this.state.faculty ? JSON.parse(this.state.faculty).groups.map((fac, id) => (
-      <option value={JSON.stringify(fac)} key={id}>{fac.name}</option>
-    )) : <option value={null}></option>
+    const groups = this.state.faculty ? JSON.parse(this.state.faculty).groups.map((group) => (
+      <option value={JSON.stringify(group)} key={group.name}>{group.name}</option>
+    )) : <option value={null} />;
 
     return (
-      <Panel id="first" >
+      <Panel id="first">
         <div className="onboarding">
           {/* <img src={require('../images/firstP_dark.png')} className="image_first" /> */}
 
           <span className="title">Пора знакомиться!</span>
-          <span className="subtitle">Чтобы продолжить работу с сервисом,<br />необходимо выбрать свой факультет и группу.<br />Благодаря этим данным мы сможем фильтровать<br />ленту новостей и показать твоё расписание.</span>
+          <span className="subtitle">
+Чтобы продолжить работу с сервисом,
+            <br />
+необходимо выбрать свой факультет и группу.
+            <br />
+Благодаря этим данным мы сможем фильтровать
+            <br />
+ленту новостей и показать твоё расписание.
+          </span>
 
           <FormLayout className="select_group">
             <Select
@@ -55,7 +68,8 @@ class FirstScr extends Component {
               placeholder="Не выбран"
               onChange={this.onChange}
               value={this.state.faculty}
-              name="faculty">
+              name="faculty"
+            >
               {faculties}
             </Select>
 
@@ -65,7 +79,8 @@ class FirstScr extends Component {
               onChange={this.onChange}
               value={this.state.group}
               disabled={!this.state.faculty}
-              name="group">
+              name="group"
+            >
               {groups}
             </Select>
           </FormLayout>
@@ -81,7 +96,8 @@ class FirstScr extends Component {
               stretched
               className="button_Panel"
               style={{ margin: 0 }}
-              disabled={!this.state.group || !this.state.faculty}>
+              disabled={!this.state.group || !this.state.faculty}
+            >
               Поехали!
             </Button>
           </div>
