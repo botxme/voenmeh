@@ -51,8 +51,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activePage: localStorage.group !== undefined ? 'schedule' : 'onbording',
+    this.state = {//schedule
+      activePage: localStorage.group !== undefined ? 'profile' : 'onbording',
       activePanel: 'feed',
       history: ['feed'],
       data: '',
@@ -61,7 +61,8 @@ class App extends Component {
       isLoaded: false,
       news: [],
       banners: [],
-      schedule: {}
+      schedule: {},
+      groupsList: [],
     };
 
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -94,6 +95,12 @@ class App extends Component {
     }).catch((e) => {
       console.error(e);
       this.setState({ isLoaded: true });
+    });
+
+    API.request('getGroups', null, 'GET', 1).then((groupsList) => {
+      this.setState({ groupsList });
+    }).catch((e) => {
+      console.error(e);
     });
 
     this.pool(180);
@@ -244,11 +251,11 @@ class App extends Component {
         </View>
 
         <View id="profile" activePanel="profile">
-          <Profile id="profile" />
+          <Profile id="profile" variable={this} groupsList={this.state.groupsList} />
         </View>
 
         <View id="first" activePanel="first">
-          <FirstScr id="first" variable={this} />
+          <FirstScr id="first" variable={this} groupsList={this.state.groupsList} />
         </View>
 
         <View id="onbording" activePanel="onbording">

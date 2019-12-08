@@ -1,5 +1,7 @@
-#profile {
-  padding: 0px 20px;
+.profile_feedback, 
+.profile_vk,
+.group_data {
+  margin: 0 15px;
 }
 
 .profile_title {
@@ -25,6 +27,7 @@
   padding-bottom: 5px;
   font-size: 18px;
   font-family: "TT Norms";
+  font-weight: 400;
   color: rgb(255, 255, 255);
 }
 
@@ -42,4 +45,45 @@
   background-position-y: center;
   background-position-x: left;
   background-repeat: no-repeat;
+}
+
+.profile_vk {
+  padding: 30px 0;
+  display: inline-flex;
+}
+
+.name_vk {
+  align-self: center;
+  padding-left: 8vw;
+}
+
+.flname {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.status {
+  color: #4286f4;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.fac_dat {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 6px 0;
+}
+
+.data_select {
+  width: 60vw;
+}
+
+.data_name {
+  color: #767778;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: left;
 }

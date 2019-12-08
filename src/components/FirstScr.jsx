@@ -6,24 +6,16 @@ import {
   Button, Panel, FormLayout, Select
 } from '@vkontakte/vkui';
 import '../css/first.css';
-import API from '../helpers/API.js';
 
 class FirstScr extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      groupsList: []
-    };
+    this.state = {};
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    API.request('getGroups', null, 'GET', 1).then((value) => {
-      this.setState({ groupsList: value });
-    }).catch((e) => {
-      console.error(e);
-    });
   }
 
   onChange(e) {
@@ -38,7 +30,7 @@ class FirstScr extends Component {
   }
 
   render() {
-    const faculties = this.state.groupsList.map((fac) => (
+    const faculties = this.props.groupsList.map((fac) => (
       <option value={JSON.stringify(fac)} key={fac.faculty}>{fac.faculty}</option>
     ));
 
