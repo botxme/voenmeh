@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
@@ -51,8 +52,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {//schedule
-      activePage: localStorage.group !== undefined ? 'profile' : 'onbording',
+    this.state = {
+      activePage: localStorage.group !== undefined ? 'schedule' : 'onbording',
       activePanel: 'feed',
       history: ['feed'],
       data: '',
@@ -182,7 +183,10 @@ class App extends Component {
     const tabbar = (
       <Tabbar className={classTab}>
         <TabbarItem
-          onClick={() => this.changePage('feed')}
+          onClick={() => {
+            this.changePage('feed');
+            activePanel === 'page' ? this.setState({ activePanel: 'feed' }) : null;
+          }}
           selected={activePage === 'feed'}
         >
           <Icon28ArticleOutline />
