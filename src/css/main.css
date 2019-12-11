@@ -145,6 +145,11 @@ Spinner {
   height: 100%;
 }
 
+input {
+  font-variant-ligatures: no-common-ligatures;
+  -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
 @media (device-height : 568px) and (device-width : 320px) and (-webkit-min-device-pixel-ratio: 2) {
   .post_date {
     font-size: 14px !important;

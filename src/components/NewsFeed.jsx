@@ -104,7 +104,7 @@ class NewsFeed extends Component {
     return (
       <Panel id="feed">
         <PanelHeader>Новости</PanelHeader>
-        <Search value={this.state.search} onChange={this.onChange} />
+        <Search value={this.state.search} onChange={this.onChange} className="NewsFeedSearch" />
         {this.state.search.length === 0 ? (
           <Carousel
             list={this.props.banners}
