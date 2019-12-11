@@ -6,7 +6,7 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
 import {
-  Panel, PanelHeader, Link, Spinner, Avatar, Separator, Select
+  Panel, PanelHeader, Link, Spinner, Avatar, Separator, Select, Switch
 } from '@vkontakte/vkui';
 import '../css/profile.css';
 import connect from '@vkontakte/vk-connect';
@@ -78,7 +78,7 @@ class Profile extends Component {
     )) : <option value={null} />;
 
     const {
-      last_name, first_name, id, photo_100
+      last_name, first_name, photo_100
     } = this.state.data;
     return (
       <Panel id="profile">
@@ -125,6 +125,17 @@ class Profile extends Component {
                 {groups}
               </Select>
             </div>
+          </div>
+        </div>
+
+        <div className="profile_notify">
+          <div className="profile_title">Уведомления</div>
+          <div className="profile_notify_deadline">
+            <div className="profile_notify_textblock">
+              <div className="profile_notify_title">Скоро дедлайн</div>
+              <div className="profile_notify_sub">Сервис пришлет уведомление о приближающемся дедлайне</div>
+            </div>
+            <Switch className="profile_notify_switch" disabled />
           </div>
         </div>
 
