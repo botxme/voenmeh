@@ -10,7 +10,7 @@
 
 .lesson_time {
   font-weight: 400;
-  min-width: 41px;
+  min-width: 45px;
   display: flex;
   flex-direction: column;
   margin-right: 10px;
