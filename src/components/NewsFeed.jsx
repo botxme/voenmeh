@@ -60,7 +60,7 @@ class NewsFeed extends Component {
                   <div className="post_tags">
                     {post.tags.map((tag, id) => (
                       // eslint-disable-next-line react/no-array-index-key
-                      <div className="post_tag" key={id}>{`# ${tag.toLowerCase()}`}</div>
+                      <div className="post_tag" key={id}>{`#${tag.toLowerCase()}`}</div>
                     ))}
                   </div>
                 </div>

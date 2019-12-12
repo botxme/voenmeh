@@ -29,7 +29,7 @@ class Schedule extends Component {
 
     if (weekDay === -1) return this.setState({ lessons: [null] });
     if (!odd[weekDay] || !even[weekDay]) return this.setState({ lessons: [null] });
-    if (odd[weekDay].length === 0) return this.setState({ lessons: [null] });
+    if ((odd[weekDay].length === 0) || (even[weekDay].length === 0)) return this.setState({ lessons: [null] });
 
     const les = [];
     if (k !== Math.floor(k)) {
