@@ -1,4 +1,6 @@
 :root {
+  --activity_indicator_tint: #5d5f61;
+  --accent: #5d5f61;
   --text_primary: #e1e3e6;
   --background_page: #212123;
   --header_alternate_background: #19191a;
@@ -143,6 +145,10 @@ Spinner {
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+.Spinner {
+  background-color: #212123;
 }
 
 input {

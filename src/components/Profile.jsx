@@ -67,7 +67,14 @@ class Profile extends Component {
   }
 
   render() {
-    if (!this.state.data) return <Spinner size="large" />;
+    if (!this.state.data) {
+      return (
+        <Panel id="profile">
+          <PanelHeader>Профиль</PanelHeader>
+          <Spinner size="large" />
+        </Panel>
+      );
+    }
 
     const faculties = this.props.groupsList.map((fac) => (
       <option value={JSON.stringify(fac)} key={fac.faculty}>{fac.faculty}</option>
